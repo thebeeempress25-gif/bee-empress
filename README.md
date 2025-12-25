@@ -1,6 +1,6 @@
 # The Bee Empress - Luxury Beeswax E-commerce
 
-A production-ready, premium e-commerce website for luxury beeswax candles, solid perfumes, and fragrance bars. Built with React, TypeScript, Tailwind CSS, and Supabase.
+A production-ready, premium e-commerce website for luxury beeswax candles, solid perfumes, and fragrance baRs Built with React, TypeScript, Tailwind CSS, and Supabase.
 
 ## Features
 

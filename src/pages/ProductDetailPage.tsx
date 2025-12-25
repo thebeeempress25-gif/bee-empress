@@ -100,9 +100,8 @@ export default function ProductDetailPage({
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
-                    className={`aspect-square bg-[#F4EDE6] rounded-lg overflow-hidden border-2 transition-colors ${
-                      idx === selectedImage ? 'border-[#D69C4A]' : 'border-transparent'
-                    }`}
+                    className={`aspect-square bg-[#F4EDE6] rounded-lg overflow-hidden border-2 transition-colors ${idx === selectedImage ? 'border-[#D69C4A]' : 'border-transparent'
+                      }`}
                   >
                     <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
                   </button>
@@ -150,12 +149,12 @@ export default function ProductDetailPage({
               </div>
 
               <div className="flex items-center gap-3 mb-6">
-                <p className="text-3xl font-serif text-[#D69C4A]">${displayPrice}</p>
+                <p className="text-3xl font-serif text-[#D69C4A]">Rs {displayPrice}</p>
                 {hasDiscount && (
                   <>
-                    <p className="text-xl text-gray-400 line-through">${product.price}</p>
+                    <p className="text-xl text-gray-400 line-through">Rs {product.price}</p>
                     <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded">
-                      Save ${(product.price - displayPrice).toFixed(2)}
+                      Save Rs {(product.price - displayPrice).toFixed(2)}
                     </span>
                   </>
                 )}
@@ -228,11 +227,10 @@ export default function ProductDetailPage({
 
                 <button
                   onClick={toggleWishlist}
-                  className={`px-6 py-4 border rounded-lg transition-colors ${
-                    inWishlist
+                  className={`px-6 py-4 border rounded-lg transition-colors ${inWishlist
                       ? 'border-[#D69C4A] bg-[#FFF9F2] text-[#D69C4A]'
                       : 'border-gray-300 hover:bg-gray-50'
-                  }`}
+                    }`}
                   aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                 >
                   <Heart size={20} className={inWishlist ? 'fill-[#D69C4A]' : ''} />
@@ -328,7 +326,7 @@ export default function ProductDetailPage({
                         <Star key={i} size={16} className="fill-[#D69C4A] text-[#D69C4A]" />
                       ))}
                     </div>
-                    <span className="font-medium text-gray-900">Sarah M.</span>
+                    <span className="font-medium text-gray-900">chitra M.</span>
                     <span className="text-sm text-gray-500">Verified Purchase</span>
                   </div>
                   <p className="text-gray-700 leading-relaxed">

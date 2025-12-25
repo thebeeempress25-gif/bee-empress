@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
+import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function ContactPage() {
@@ -134,10 +134,10 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-[#1F2124] mb-1">Email</h4>
                     <a
-                      href="mailto:info@thebeeempress.com"
+                      href="mailto:thebeeempress25@gmail.com"
                       className="text-gray-600 hover:text-[#D69C4A] transition-colors"
                     >
-                      info@thebeeempress.com
+                      thebeeempress25@gmail.com
                     </a>
                   </div>
                 </div>

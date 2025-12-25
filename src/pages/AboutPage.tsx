@@ -73,7 +73,7 @@ export default function AboutPage() {
                 Chitra founded The Bee Empress with a vision to revolutionize the candle industry by putting sustainability at the heart of luxury. With over 15 years of experience in sustainable product development and a lifelong passion for environmental conservation, she has built The Bee Empress into a beacon of ethical business practices.
               </p>
               <p>
-                A former environmental scientist, Sarah spent years researching bee populations and the critical role they play in our ecosystems. This deep understanding drives every decision at The Bee Empress—from the beeswax we source to the partnerships we cultivate.
+                A former environmental scientist, chitra spent years researching bee populations and the critical role they play in our ecosystems. This deep understanding drives every decision at The Bee Empress—from the beeswax we source to the partnerships we cultivate.
               </p>
               <p>
                 Under her leadership, The Bee Empress has grown from a small workshop to a recognized brand, all while maintaining an unwavering commitment to regenerative practices and bee conservation.

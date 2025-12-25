@@ -329,8 +329,11 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
               Create a custom collection of candles, perfumes, and fragrance bars.
               Beautifully packaged and ready to delight.
             </p>
-            <button className="px-8 py-4 bg-white text-[#1F2124] rounded-lg hover:bg-[#FFF9F2] transition-colors font-medium uppercase tracking-wider text-sm">
-              Start Building
+            <button
+              onClick={() => onNavigate('contact')}
+              className="px-8 py-4 bg-white text-[#1F2124] rounded-lg hover:bg-[#FFF9F2] transition-colors font-medium uppercase tracking-wider text-sm"
+            >
+              Start Customising
             </button>
           </div>
         </div>

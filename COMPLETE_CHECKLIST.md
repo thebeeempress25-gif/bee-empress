@@ -127,7 +127,7 @@
 - [x] Quantity management
 - [x] Remove from cart
 - [x] Cart persistence (localStorage + session ID)
-- [x] Free shipping threshold ($100)
+- [x] Free shipping threshold (Rs100)
 - [x] Order summary with pricing
 - [x] Tax calculation
 - [x] Shipping cost calculation

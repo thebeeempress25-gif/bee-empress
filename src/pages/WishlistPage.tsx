@@ -126,9 +126,9 @@ export default function WishlistPage({ onNavigate, onAddToCart, onWishlistChange
 
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-serif text-[#D69C4A]">${displayPrice}</span>
+                      <span className="text-xl font-serif text-[#D69C4A]">Rs {displayPrice}</span>
                       {hasDiscount && (
-                        <span className="text-sm text-gray-400 line-through">${product.price}</span>
+                        <span className="text-sm text-gray-400 line-through">Rs {product.price}</span>
                       )}
                     </div>
                   </div>

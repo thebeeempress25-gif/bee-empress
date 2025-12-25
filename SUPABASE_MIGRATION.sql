@@ -262,7 +262,7 @@ CREATE POLICY "Order items inherit order permissions"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE orders.id = order_items.order_id
+      WHERE ordeRsid = order_items.order_id
     )
   );
 
@@ -293,7 +293,7 @@ CREATE POLICY "Shipping addresses inherit order permissions"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE orders.id = shipping_addresses.order_id
+      WHERE ordeRsid = shipping_addresses.order_id
     )
   );
 
@@ -318,7 +318,7 @@ CREATE POLICY "Status history is readable"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE orders.id = order_status_history.order_id
+      WHERE ordeRsid = order_status_history.order_id
     )
   );
 
@@ -341,7 +341,7 @@ CREATE INDEX IF NOT EXISTS idx_order_status_history_order_id ON order_status_his
 
 -- Function to generate unique order numbers
 CREATE OR REPLACE FUNCTION generate_order_number()
-RETURNS text AS $$
+RETURNS text AS RsRs
 DECLARE
   new_number text;
   exists_check boolean;
@@ -356,16 +356,16 @@ BEGIN
 
   RETURN new_number;
 END;
-$$ LANGUAGE plpgsql;
+RsRs LANGUAGE plpgsql;
 
 -- Function to update order timestamp
 CREATE OR REPLACE FUNCTION update_order_timestamp()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS RsRs
 BEGIN
   NEW.updated_at = now();
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+RsRs LANGUAGE plpgsql;
 
 -- Trigger for order timestamp
 DROP TRIGGER IF EXISTS orders_updated_at ON orders;
@@ -376,7 +376,7 @@ CREATE TRIGGER orders_updated_at
 
 -- Function to track order status changes
 CREATE OR REPLACE FUNCTION track_order_status_change()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS RsRs
 BEGIN
   IF (TG_OP = 'INSERT') OR (OLD.status IS DISTINCT FROM NEW.status) THEN
     INSERT INTO order_status_history (order_id, status, notes)
@@ -384,7 +384,7 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+RsRs LANGUAGE plpgsql;
 
 -- Trigger for status tracking
 DROP TRIGGER IF EXISTS track_order_status ON orders;

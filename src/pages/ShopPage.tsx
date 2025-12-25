@@ -40,9 +40,9 @@ export default function ShopPage({ onQuickView, onAddToCart, onNavigate }: ShopP
 
     if (selectedPriceRange !== 'all') {
       filtered = filtered.filter((p) => {
-        if (selectedPriceRange === 'under_30') return p.price < 30;
-        if (selectedPriceRange === '30_50') return p.price >= 30 && p.price <= 50;
-        if (selectedPriceRange === 'over_50') return p.price > 50;
+        if (selectedPriceRange === 'under_500') return p.price < 500;
+        if (selectedPriceRange === '500_1500') return p.price >= 500 && p.price <= 1500;
+        if (selectedPriceRange === 'over_1500') return p.price > 1500;
         return true;
       });
     }
@@ -108,9 +108,9 @@ export default function ShopPage({ onQuickView, onAddToCart, onNavigate }: ShopP
                 <div className="space-y-2">
                   {[
                     { value: 'all', label: 'All Prices' },
-                    { value: 'under_30', label: 'Under $30' },
-                    { value: '30_50', label: '$30 - $50' },
-                    { value: 'over_50', label: 'Over $50' },
+                    { value: 'under_500', label: 'Under Rs 500' },
+                    { value: '500_1500', label: 'Rs 500 - Rs 1500' },
+                    { value: 'over_1500', label: 'Over Rs 1500' },
                   ].map((price) => (
                     <label key={price.value} className="flex items-center gap-2 cursor-pointer">
                       <input

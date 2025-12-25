@@ -95,11 +95,10 @@ export default function CollectionPage({
                 <button
                   key={sub}
                   onClick={() => setSelectedSegment(sub)}
-                  className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap ${
-                    selectedSegment === sub
+                  className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap ${selectedSegment === sub
                       ? 'bg-[#D69C4A] text-white'
                       : 'bg-white text-[#1F2124] border border-gray-300 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {sub}
                 </button>

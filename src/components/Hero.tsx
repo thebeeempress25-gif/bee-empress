@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    image: '/luxury.jpg',
+    image: 'https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=1920',
     alt: 'Luxury beeswax candles'
   },
   {
@@ -45,9 +45,8 @@ export default function Hero() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 opacity-30 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-30' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 opacity-30 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-30' : 'opacity-0'
+              }`}
           >
             <img
               src={slide.image}
@@ -103,11 +102,10 @@ export default function Hero() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
                 ? 'bg-[#D69C4A] w-8'
                 : 'bg-white/60 hover:bg-white/80'
-            }`}
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

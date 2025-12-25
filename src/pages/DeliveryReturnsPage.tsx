@@ -153,15 +153,13 @@ export default function DeliveryReturnsPage() {
                   {item.title}
                 </h2>
                 <ChevronDown
-                  className={`w-6 h-6 text-[#D69C4A] transition-transform duration-300 flex-shrink-0 ml-4 ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className={`w-6 h-6 text-[#D69C4A] transition-transform duration-300 flex-shrink-0 ml-4 ${openIndex === index ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
               <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                }`}
+                className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
               >
                 <div className="p-6 pt-0 bg-white">
                   {item.content}

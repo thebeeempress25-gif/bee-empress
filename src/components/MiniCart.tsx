@@ -19,7 +19,7 @@ export default function MiniCart({
   onCheckout,
 }: MiniCartProps) {
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const shipping = subtotal >= 100 ? 0 : 10;
+  const shipping = subtotal >= 1500 ? 0 : 50;
   const total = subtotal + shipping;
 
   if (!isOpen) return null;
@@ -72,7 +72,7 @@ export default function MiniCart({
                         {item.product.name}
                       </h3>
                       <p className="text-sm text-gray-600 mb-2">
-                        ${item.product.price}
+                        Rs {item.product.price}
                       </p>
                       <div className="flex items-center gap-2">
                         <button
@@ -108,22 +108,22 @@ export default function MiniCart({
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium">Rs {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium">
-                    {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                    {shipping === 0 ? 'FREE' : `Rs ${shipping.toFixed(2)}`}
                   </span>
                 </div>
-                {subtotal < 100 && subtotal > 0 && (
+                {subtotal < 1500 && subtotal > 0 && (
                   <p className="text-xs text-[#8A9A5B]">
-                    Add ${(100 - subtotal).toFixed(2)} more for free shipping
+                    Add Rs {(1500 - subtotal).toFixed(2)} more for free shipping
                   </p>
                 )}
                 <div className="flex justify-between text-lg font-serif pt-2 border-t">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>Rs {total.toFixed(2)}</span>
                 </div>
               </div>
 

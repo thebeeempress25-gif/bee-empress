@@ -83,7 +83,7 @@ export default function PrivacyPage() {
               <li>Withdraw consent where we rely on it</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mb-4">
-              To exercise these rights, please contact us at <a href="mailto:info@thebeeempress.com" className="text-[#D69C4A] hover:underline">info@thebeeempress.com</a>.
+              To exercise these rights, please contact us at <a href="mailto:thebeeempress25@gmail.com" className="text-[#D69C4A] hover:underline">thebeeempress25@gmail.com</a>.
             </p>
           </section>
 
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
             </p>
             <div className="bg-[#F4EDE6] p-6 rounded-lg">
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> <a href="mailto:info@thebeeempress.com" className="text-[#D69C4A] hover:underline">info@thebeeempress.com</a>
+                <strong>Email:</strong> <a href="mailto:thebeeempress25@gmail.com" className="text-[#D69C4A] hover:underline">thebeeempress25@gmail.com</a>
               </p>
               <p className="text-gray-700">
                 <strong>Phone:</strong> <a href="tel:+918810314219" className="text-[#D69C4A] hover:underline">+91 88103 14219</a>

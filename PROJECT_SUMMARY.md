@@ -164,7 +164,7 @@ src/pages/
 ✅ Quantity management
 ✅ Remove items
 ✅ Cart persistence (localStorage + session ID)
-✅ Free shipping threshold ($100)
+✅ Free shipping threshold (Rs100)
 
 ### Content
 ✅ Product descriptions (short + full)

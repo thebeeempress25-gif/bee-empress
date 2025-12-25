@@ -68,18 +68,21 @@ function App() {
       .eq('session_id', sessionId);
 
     if (data) {
-      const formattedItems: CartItemWithProduct[] = data.map((item: any) => ({
-        id: item.id,
-        product_id: item.product_id,
-        quantity: item.quantity,
-        gift_wrap: item.gift_wrap,
-        product: {
-          name: item.products.name,
-          price: item.products.price,
-          images: item.products.images,
-          slug: item.products.slug,
-        },
-      }));
+      const formattedItems: CartItemWithProduct[] = data.map((item: any) => {
+        const product = Array.isArray(item.products) ? item.products[0] : item.products;
+        return {
+          id: item.id,
+          product_id: item.product_id,
+          quantity: item.quantity,
+          gift_wrap: item.gift_wrap,
+          product: {
+            name: product?.name,
+            price: product?.price,
+            images: product?.images,
+            slug: product?.slug,
+          },
+        };
+      });
       setCartItems(formattedItems);
     }
   }

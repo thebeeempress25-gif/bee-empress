@@ -3,12 +3,12 @@
 
   ## Overview
   Populates the database with all premium products across three main categories:
-  beeswax candles, solid perfumes, and fragrance bars.
+  beeswax candles, solid perfumes, and fragrance baRs
 
   ## Collections Added
-  1. **Luxury Collection** - Deep, bold, timeless fragrances ($68)
-  2. **Elegance Collection** - Calming, graceful, serene scents ($62)
-  3. **Essence Collection** - Grounding, earthy, sacred aromas ($58)
+  1. **Luxury Collection** - Deep, bold, timeless fragrances (Rs68)
+  2. **Elegance Collection** - Calming, graceful, serene scents (Rs62)
+  3. **Essence Collection** - Grounding, earthy, sacred aromas (Rs58)
 
   ## Products Added
   

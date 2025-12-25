@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ShoppingBag, Heart, Menu, X, MessageCircle } from 'lucide-react';
-import MiniCart from './MiniCart';
+
 
 type HeaderProps = {
   cartItemCount: number;
@@ -33,13 +33,12 @@ export default function Header({ cartItemCount, wishlistCount, onCartClick, onWi
   return (
     <>
       <div className="bg-[#D69C4A] text-[#1F2124] text-center py-2 px-4 text-sm">
-        Free shipping on orders over $100 · Sustainably sourced beeswax
+        Free shipping on orders over Rs 1500 · Sustainably sourced beeswax
       </div>
 
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white shadow-md' : 'bg-white'
-        }`}
+        className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white'
+          }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">

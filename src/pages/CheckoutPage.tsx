@@ -324,7 +324,7 @@ export default function CheckoutPage({
                         <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
                       </div>
                       <p className="text-sm font-medium text-[#1F2124]">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        Rs {(item.product.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}
@@ -333,23 +333,23 @@ export default function CheckoutPage({
                 <div className="space-y-3 mb-6 pb-6 border-b border-gray-300">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Subtotal</span>
-                    <span className="font-medium text-[#1F2124]">${subtotal.toFixed(2)}</span>
+                    <span className="font-medium text-[#1F2124]">Rs {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Tax (8%)</span>
-                    <span className="font-medium text-[#1F2124]">${tax.toFixed(2)}</span>
+                    <span className="font-medium text-[#1F2124]">Rs {tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Shipping</span>
                     <span className="font-medium text-[#1F2124]">
-                      {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? 'FREE' : `Rs ${shipping.toFixed(2)}`}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex justify-between mb-6">
                   <span className="font-serif text-lg text-[#1F2124]">Total</span>
-                  <span className="font-serif text-2xl text-[#D69C4A]">${total.toFixed(2)}</span>
+                  <span className="font-serif text-2xl text-[#D69C4A]">Rs {total.toFixed(2)}</span>
                 </div>
 
                 <button

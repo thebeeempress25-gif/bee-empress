@@ -119,7 +119,7 @@ PAGES.md              # Page structure
 - Quick preview modals
 - Add to cart with quantity selection
 - Session-based cart persistence
-- Free shipping threshold ($100)
+- Free shipping threshold (Rs100)
 
 ### 📧 Newsletter
 - Email subscription with 10% coupon

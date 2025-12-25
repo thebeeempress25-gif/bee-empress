@@ -81,11 +81,11 @@ Both functions will be deployed at:
 ```typescript
 const checkoutOrder = async (checkoutData) => {
   const response = await fetch(
-    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/checkout`,
+    `Rs{import.meta.env.VITE_SUPABASE_URL}/functions/v1/checkout`,
     {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Authorization': `Bearer Rs{import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(checkoutData),
@@ -246,10 +246,10 @@ const checkoutOrder = async (checkoutData) => {
 // Get orders by session
 const getOrdersBySession = async (sessionId: string) => {
   const response = await fetch(
-    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders?sessionId=${sessionId}`,
+    `Rs{import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders?sessionId=Rs{sessionId}`,
     {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Authorization': `Bearer Rs{import.meta.env.VITE_SUPABASE_ANON_KEY}`,
       },
     }
   );
@@ -259,10 +259,10 @@ const getOrdersBySession = async (sessionId: string) => {
 // Get specific order
 const getOrder = async (orderNumber: string) => {
   const response = await fetch(
-    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders/${orderNumber}`,
+    `Rs{import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders/Rs{orderNumber}`,
     {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Authorization': `Bearer Rs{import.meta.env.VITE_SUPABASE_ANON_KEY}`,
       },
     }
   );
@@ -272,11 +272,11 @@ const getOrder = async (orderNumber: string) => {
 // Update order status (admin only)
 const updateOrderStatus = async (orderId: string, status: string, notes?: string) => {
   const response = await fetch(
-    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders/${orderId}/status`,
+    `Rs{import.meta.env.VITE_SUPABASE_URL}/functions/v1/orders/Rs{orderId}/status`,
     {
       method: 'PUT',
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Authorization': `Bearer Rs{import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ status, notes }),

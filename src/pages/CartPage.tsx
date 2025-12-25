@@ -17,7 +17,7 @@ export default function CartPage({
   onCheckout,
 }: CartPageProps) {
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const shipping = subtotal >= 100 ? 0 : 10;
+  const shipping = subtotal >= 1500 ? 0 : 50;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
 
@@ -96,7 +96,7 @@ export default function CartPage({
 
                         <div className="flex items-center gap-4">
                           <p className="font-serif text-lg text-[#1F2124]">
-                            ${(item.product.price * item.quantity).toFixed(2)}
+                            Rs {(item.product.price * item.quantity).toFixed(2)}
                           </p>
                           <button
                             onClick={() => onRemoveItem(item.id)}
@@ -117,7 +117,7 @@ export default function CartPage({
                 <div className="space-y-2 text-sm text-gray-600">
                   <p>Standard shipping: 5-7 business days</p>
                   <p className="text-[#8A9A5B] font-medium">
-                    Free shipping on orders over $100
+                    Free shipping on orders over Rs 1500
                   </p>
                 </div>
               </div>
@@ -130,28 +130,28 @@ export default function CartPage({
                 <div className="space-y-4 mb-6 pb-6 border-b border-gray-300">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal</span>
-                    <span className="font-medium text-[#1F2124]">${subtotal.toFixed(2)}</span>
+                    <span className="font-medium text-[#1F2124]">Rs {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tax (8%)</span>
-                    <span className="font-medium text-[#1F2124]">${tax.toFixed(2)}</span>
+                    <span className="font-medium text-[#1F2124]">Rs {tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
                     <span className="font-medium text-[#1F2124]">
-                      {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? 'FREE' : `Rs ${shipping.toFixed(2)}`}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex justify-between mb-6">
                   <span className="font-serif text-lg text-[#1F2124]">Total</span>
-                  <span className="font-serif text-2xl text-[#D69C4A]">${total.toFixed(2)}</span>
+                  <span className="font-serif text-2xl text-[#D69C4A]">Rs {total.toFixed(2)}</span>
                 </div>
 
-                {subtotal < 100 && subtotal > 0 && (
+                {subtotal < 1500 && subtotal > 0 && (
                   <p className="text-xs text-[#8A9A5B] font-medium mb-6 p-3 bg-white rounded">
-                    Add ${(100 - subtotal).toFixed(2)} more for free shipping
+                    Add Rs {(1500 - subtotal).toFixed(2)} more for free shipping
                   </p>
                 )}
 

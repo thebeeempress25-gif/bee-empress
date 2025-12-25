@@ -78,11 +78,10 @@ export default function CandlesPage({ onQuickView, onAddToCart, onNavigate, init
               <button
                 key={sub.slug}
                 onClick={() => setSelectedSubcategory(sub.slug)}
-                className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap font-medium ${
-                  selectedSubcategory === sub.slug
+                className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap font-medium ${selectedSubcategory === sub.slug
                     ? 'bg-[#D69C4A] text-white'
                     : 'bg-white text-[#1F2124] border border-gray-300 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {sub.name}
               </button>
