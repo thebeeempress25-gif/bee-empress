@@ -67,10 +67,10 @@ export default function AboutPage() {
           </div>
           <div>
             <h2 className="font-serif text-4xl text-[#1F2124] mb-4">Meet Our CEO</h2>
-            <h3 className="text-2xl text-[#D69C4A] mb-6">Sarah Mitchell</h3>
+            <h3 className="text-2xl text-[#D69C4A] mb-6">Chitra</h3>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Sarah founded The Bee Empress with a vision to revolutionize the candle industry by putting sustainability at the heart of luxury. With over 15 years of experience in sustainable product development and a lifelong passion for environmental conservation, she has built The Bee Empress into a beacon of ethical business practices.
+                Chitra founded The Bee Empress with a vision to revolutionize the candle industry by putting sustainability at the heart of luxury. With over 15 years of experience in sustainable product development and a lifelong passion for environmental conservation, she has built The Bee Empress into a beacon of ethical business practices.
               </p>
               <p>
                 A former environmental scientist, Sarah spent years researching bee populations and the critical role they play in our ecosystems. This deep understanding drives every decision at The Bee Empress—from the beeswax we source to the partnerships we cultivate.
