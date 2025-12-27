@@ -95,7 +95,10 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
         )}
 
         <div className="flex items-center justify-between">
-          <span className="text-2xl font-serif text-[#1F2124]">Rs {product.price}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-serif text-[#D69C4A]">Rs {product.price}</span>
+            <span className="text-sm text-gray-400 line-through">Rs {product.price + 500}</span>
+          </div>
           <button
             onClick={() => onAddToCart(product.id)}
             className="text-sm uppercase tracking-wider text-[#D69C4A] hover:text-[#1F2124] transition-colors font-medium"

@@ -67,8 +67,9 @@ export default function ProductDetailPage({
     return <div className="min-h-screen flex items-center justify-center">Product not found</div>;
   }
 
-  const displayPrice = product.offer_price || product.price;
-  const hasDiscount = !!product.offer_price;
+  const displayPrice = product.price;
+  const originalPrice = product.price + 500;
+  const savings = 500;
 
   return (
     <div className="min-h-screen bg-white">
@@ -150,14 +151,10 @@ export default function ProductDetailPage({
 
               <div className="flex items-center gap-3 mb-6">
                 <p className="text-3xl font-serif text-[#D69C4A]">Rs {displayPrice}</p>
-                {hasDiscount && (
-                  <>
-                    <p className="text-xl text-gray-400 line-through">Rs {product.price}</p>
-                    <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded">
-                      Save Rs {(product.price - displayPrice).toFixed(2)}
-                    </span>
-                  </>
-                )}
+                <p className="text-xl text-gray-400 line-through">Rs {originalPrice}</p>
+                <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded">
+                  Save Rs {savings}
+                </span>
               </div>
 
               <p className="text-lg text-gray-700 leading-relaxed">{product.short_description}</p>

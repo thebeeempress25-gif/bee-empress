@@ -16,7 +16,10 @@ export default function CartPage({
   onNavigate,
   onCheckout,
 }: CartPageProps) {
-  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => {
+    const price = item.product.price; // Use actual price for calculations
+    return sum + price * item.quantity;
+  }, 0);
   const shipping = subtotal >= 1500 ? 0 : 50;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
@@ -72,10 +75,17 @@ export default function CartPage({
                       <h3 className="font-serif text-lg text-[#1F2124] mb-1">
                         {item.product.name}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-gray-600 mb-2">
                         {item.gift_wrap && <span>Gift wrap included • </span>}
                         SKU: {item.product_id.slice(0, 8)}
                       </p>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm font-medium text-[#D69C4A]">Rs {item.product.price}</span>
+                        <span className="text-xs text-gray-400 line-through">Rs {item.product.price + 500}</span>
+                        <span className="text-xs text-red-600 font-medium">
+                          Save Rs 500
+                        </span>
+                      </div>
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 border border-gray-300 rounded-lg w-fit">

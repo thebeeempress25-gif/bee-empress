@@ -17,6 +17,7 @@ export type CartItemWithProduct = {
   product: {
     name: string;
     price: number;
+    offer_price?: number;
     images: string[];
     slug: string;
   };
@@ -35,6 +36,7 @@ export async function loadCart(): Promise<CartItemWithProduct[]> {
       products (
         name,
         price,
+        offer_price,
         images,
         slug
       )
@@ -49,7 +51,7 @@ export async function loadCart(): Promise<CartItemWithProduct[]> {
   return (data || []).map(item => {
     // Handle products relation - it can be an object or array depending on Supabase version
     const product = Array.isArray(item.products) ? item.products[0] : item.products;
-    
+
     return {
       id: item.id,
       product_id: item.product_id,
@@ -58,6 +60,7 @@ export async function loadCart(): Promise<CartItemWithProduct[]> {
       product: {
         name: product?.name || '',
         price: product?.price || 0,
+        offer_price: product?.offer_price,
         images: product?.images || [],
         slug: product?.slug || '',
       }

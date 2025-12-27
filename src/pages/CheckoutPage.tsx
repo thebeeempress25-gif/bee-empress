@@ -29,7 +29,10 @@ export default function CheckoutPage({
     shippingPhone: '',
   });
 
-  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => {
+    const price = item.product.price; // Use actual price for calculations
+    return sum + price * item.quantity;
+  }, 0);
   const tax = subtotal * 0.08;
   const shipping = subtotal >= 1500 ? 0 : 50;
   const total = subtotal + tax + shipping;
@@ -322,6 +325,12 @@ export default function CheckoutPage({
                       <div className="flex-1">
                         <p className="text-sm font-medium text-[#1F2124]">{item.product.name}</p>
                         <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <span className="text-xs text-gray-400 line-through">Rs {item.product.price + 500}</span>
+                          <span className="text-xs text-red-600 font-medium">
+                            Save Rs 500
+                          </span>
+                        </div>
                       </div>
                       <p className="text-sm font-medium text-[#1F2124]">
                         Rs {(item.product.price * item.quantity).toFixed(2)}
