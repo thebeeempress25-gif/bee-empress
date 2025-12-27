@@ -23,7 +23,7 @@ export default function Footer({ onNavigate }: FooterProps) {
       setStatus('success');
       setEmail('');
       setTimeout(() => setStatus('idle'), 3000);
-    } catch (error) {
+    } catch {
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
     }

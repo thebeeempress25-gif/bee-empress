@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
   html {
@@ -11,8 +11,13 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Book Antiqua', 'Palatino Linotype', 'Palatino', 'Georgia', serif;
   }
 }
 
@@ -20,7 +25,57 @@
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  @keyframes bee-logo-float {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+      transform: translateY(-2px) rotate(-8deg);
+    }
+
+    50% {
+      transform: translateY(-4px) rotate(0deg);
+    }
+
+    75% {
+      transform: translateY(-2px) rotate(8deg);
+    }
+  }
+
+  .bee-logo-animation {
+    animation: bee-logo-float 2.5s ease-in-out infinite;
+  }
+
+  @keyframes bee-fly {
+
+    0%,
+    100% {
+      transform: translateX(100%) translateY(0) rotate(0deg);
+    }
+
+    25% {
+      /* ... existing code ... */
+      transform: translateX(100%) translateY(-3px) rotate(-5deg);
+    }
+
+    50% {
+      transform: translateX(100%) translateY(-5px) rotate(0deg);
+    }
+
+    75% {
+      transform: translateX(100%) translateY(-3px) rotate(5deg);
+    }
+  }
+
+  .bee-flying {
+    animation: bee-fly 2s ease-in-out infinite;
   }
 }

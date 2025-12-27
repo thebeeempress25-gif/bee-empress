@@ -14,7 +14,7 @@
 */
 
 -- Add new columns to products table
-DO RsRs
+DO $$
 BEGIN
   IF NOT EXISTS (
     SELECT 1 FROM information_schema.columns
@@ -43,7 +43,7 @@ BEGIN
   ) THEN
     ALTER TABLE products ADD COLUMN set_contains text[] DEFAULT ARRAY[]::text[];
   END IF;
-END RsRs;
+END $$;
 
 -- Update existing products with sample ratings and enhanced content
 UPDATE products SET 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase, type Product, type Collection } from '../lib/supabase';
 import ProductCard from '../components/ProductCard';
 
@@ -20,11 +20,7 @@ export default function CollectionPage({
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchCollectionData();
-  }, [slug]);
-
-  async function fetchCollectionData() {
+  const fetchCollectionData = useCallback(async () => {
     setLoading(true);
     const { data: collectionData } = await supabase
       .from('collections')
@@ -35,7 +31,7 @@ export default function CollectionPage({
     if (collectionData) {
       setCollection(collectionData);
 
-      let query = supabase
+      const query = supabase
         .from('products')
         .select('*')
         .eq('collection_id', collectionData.id)
@@ -51,7 +47,11 @@ export default function CollectionPage({
       }
     }
     setLoading(false);
-  }
+  }, [slug, selectedSegment]);
+
+  useEffect(() => {
+    fetchCollectionData();
+  }, [slug, fetchCollectionData]);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -96,8 +96,8 @@ export default function CollectionPage({
                   key={sub}
                   onClick={() => setSelectedSegment(sub)}
                   className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap ${selectedSegment === sub
-                      ? 'bg-[#D69C4A] text-white'
-                      : 'bg-white text-[#1F2124] border border-gray-300 hover:bg-gray-50'
+                    ? 'bg-[#D69C4A] text-white'
+                    : 'bg-white text-[#1F2124] border border-gray-300 hover:bg-gray-50'
                     }`}
                 >
                   {sub}

@@ -44,12 +44,12 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#1F2124] mb-6 leading-tight">
-            Luxury in Every Flame
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#1F2124] mb-6 leading-tight">
+            Luxury In Every Flame
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Hand-poured beeswax candles, solid perfumes, and fragrance bars.
-            Ethically sourced. Sustainably crafted. Timelessly beautiful.
+          <p className="font-serif text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Hand-Poured Beeswax Candles, Solid Perfumes, and Fragrance Bars.
+          Ethically Sourced. Sustainably Crafted. Timelessly Beautiful.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -329,11 +329,8 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
               Create a custom collection of candles, perfumes, and fragrance bars.
               Beautifully packaged and ready to delight.
             </p>
-            <button
-              onClick={() => onNavigate('contact')}
-              className="px-8 py-4 bg-white text-[#1F2124] rounded-lg hover:bg-[#FFF9F2] transition-colors font-medium uppercase tracking-wider text-sm"
-            >
-              Start Customising
+            <button className="px-8 py-4 bg-white text-[#1F2124] rounded-lg hover:bg-[#FFF9F2] transition-colors font-medium uppercase tracking-wider text-sm">
+              Start Building
             </button>
           </div>
         </div>

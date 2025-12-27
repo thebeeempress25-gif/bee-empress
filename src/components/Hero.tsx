@@ -45,8 +45,9 @@ export default function Hero() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 opacity-30 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-30' : 'opacity-0'
-              }`}
+            className={`absolute inset-0 opacity-30 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-30' : 'opacity-0'
+            }`}
           >
             <img
               src={slide.image}
@@ -74,12 +75,12 @@ export default function Hero() {
       </button>
 
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#1F2124] mb-6 leading-tight">
-          Luxury in Every Flame
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#1F2124] mb-6 leading-tight">
+          Luxury In Every Flame
         </h1>
-        <p className="text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
-          Hand-poured beeswax candles, solid perfumes, and fragrance bars.
-          Ethically sourced. Sustainably crafted. Timelessly beautiful.
+        <p className="font-serif text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Hand-Poured Beeswax Candles, Solid Perfumes, and Fragrance Bars.
+          Ethically Sourced. Sustainably Crafted. Timelessly Beautiful.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -102,10 +103,11 @@ export default function Hero() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide
                 ? 'bg-[#D69C4A] w-8'
                 : 'bg-white/60 hover:bg-white/80'
-              }`}
+            }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

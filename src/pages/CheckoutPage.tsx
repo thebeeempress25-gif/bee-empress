@@ -25,13 +25,13 @@ export default function CheckoutPage({
     city: '',
     state: '',
     postalCode: '',
-    country: 'USA',
+    country: 'India',
     shippingPhone: '',
   });
 
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const tax = subtotal * 0.08;
-  const shipping = subtotal >= 50 ? 0 : 5.99;
+  const shipping = subtotal >= 1500 ? 0 : 50;
   const total = subtotal + tax + shipping;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

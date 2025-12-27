@@ -134,7 +134,7 @@ CREATE POLICY "Order items inherit order permissions"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE ordeRsid = order_items.order_id
+      WHERE orders.id = order_items.order_id
     )
   );
 
@@ -162,7 +162,7 @@ CREATE POLICY "Shipping addresses inherit order permissions"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE ordeRsid = shipping_addresses.order_id
+      WHERE orders.id = shipping_addresses.order_id
     )
   );
 
@@ -184,12 +184,12 @@ CREATE POLICY "Status history is readable"
   USING (
     EXISTS (
       SELECT 1 FROM orders
-      WHERE ordeRsid = order_status_history.order_id
+      WHERE orders.id = order_status_history.order_id
     )
   );
 
 -- Add stock tracking to products
-DO RsRs
+DO $$
 BEGIN
   IF NOT EXISTS (
     SELECT 1 FROM information_schema.columns
@@ -211,7 +211,7 @@ BEGIN
   ) THEN
     ALTER TABLE products ADD COLUMN low_stock_threshold integer DEFAULT 5;
   END IF;
-END RsRs;
+END $$;
 
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_orders_order_number ON orders(order_number);
@@ -225,7 +225,7 @@ CREATE INDEX IF NOT EXISTS idx_order_status_history_order_id ON order_status_his
 
 -- Function to generate order number
 CREATE OR REPLACE FUNCTION generate_order_number()
-RETURNS text AS RsRs
+RETURNS text AS $$
 DECLARE
   new_number text;
   exists_check boolean;
@@ -240,16 +240,16 @@ BEGIN
   
   RETURN new_number;
 END;
-RsRs LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 -- Function to update order updated_at timestamp
 CREATE OR REPLACE FUNCTION update_order_timestamp()
-RETURNS TRIGGER AS RsRs
+RETURNS TRIGGER AS $$
 BEGIN
   NEW.updated_at = now();
   RETURN NEW;
 END;
-RsRs LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER orders_updated_at
   BEFORE UPDATE ON orders
@@ -258,7 +258,7 @@ CREATE TRIGGER orders_updated_at
 
 -- Function to create status history entry on order status change
 CREATE OR REPLACE FUNCTION track_order_status_change()
-RETURNS TRIGGER AS RsRs
+RETURNS TRIGGER AS $$
 BEGIN
   IF (TG_OP = 'INSERT') OR (OLD.status IS DISTINCT FROM NEW.status) THEN
     INSERT INTO order_status_history (order_id, status, notes)
@@ -266,7 +266,7 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-RsRs LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER track_order_status
   AFTER INSERT OR UPDATE ON orders

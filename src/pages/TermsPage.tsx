@@ -58,13 +58,13 @@ export default function TermsPage() {
           <section>
             <h2 className="font-serif text-2xl text-[#1F2124] mb-4">4. Intellectual Property</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>4.1</strong> All content on the Website including text, graphics, logos, software, emails, and communications is protected by intellectual property laws and remains the property of the Company or its licensors
+              <strong>4.1</strong> All content on the Website including text, graphics, logos, software, emails, and communications is protected by intellectual property laws and remains the property of the Company or its licensors.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               <strong>4.2</strong> You may only use Website content as expressly permitted by us. You may not extract, reproduce, distribute, republish, display, post, transmit, or copy any part of the Website without our written consent.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>4.3</strong> Brand names and logos on this Website and related emails are owned by Us or our licensors
+              <strong>4.3</strong> Brand names and logos on this Website and related emails are owned by Us or our licensors.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               <strong>4.4</strong> If the Website allows product ratings or reviews ("User Content"), you are responsible for what you post and confirm that you are the author and that it is accurate. By posting, you transfer all intellectual property rights in such content to us. We may remove User Content we find inappropriate, inaccurate, offensive, unlawful, or unacceptable.

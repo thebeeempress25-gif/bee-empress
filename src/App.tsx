@@ -68,18 +68,18 @@ function App() {
       .eq('session_id', sessionId);
 
     if (data) {
-      const formattedItems: CartItemWithProduct[] = data.map((item: any) => {
-        const product = Array.isArray(item.products) ? item.products[0] : item.products;
+      const formattedItems: CartItemWithProduct[] = data.map((item) => {
+        const productsRaw = (Array.isArray(item.products) ? item.products[0] : item.products) as Record<string, unknown>;
         return {
           id: item.id,
           product_id: item.product_id,
-          quantity: item.quantity,
-          gift_wrap: item.gift_wrap,
+          quantity: item.quantity as number,
+          gift_wrap: item.gift_wrap as boolean,
           product: {
-            name: product?.name,
-            price: product?.price,
-            images: product?.images,
-            slug: product?.slug,
+            name: (productsRaw?.name as string) || '',
+            price: (productsRaw?.price as number) || 0,
+            images: (productsRaw?.images as string[]) || [],
+            slug: (productsRaw?.slug as string) || '',
           },
         };
       });

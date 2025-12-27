@@ -1,3 +1,4 @@
+// @ts-nocheck - Deno edge function, not TypeScript/Node
 import { createClient } from 'npm:@supabase/supabase-js@2.57.4';
 
 const corsHeaders = {
@@ -79,7 +80,7 @@ Deno.serve(async (req: Request) => {
         if (product.stock_quantity < item.quantity) {
           return new Response(
             JSON.stringify({
-              error: `Insufficient stock for Rs{product.name}. Available: Rs{product.stock_quantity}`,
+              error: `Insufficient stock for ${product.name}. Available: ${product.stock_quantity}`,
             }),
             {
               status: 400,
@@ -120,7 +121,7 @@ Deno.serve(async (req: Request) => {
     const { data: orderNumberResult } = await supabase
       .rpc('generate_order_number');
 
-    const orderNumber = orderNumberResult || `ORD-Rs{Date.now()}`;
+    const orderNumber = orderNumberResult || `ORD-${Date.now()}`;
 
     // Create order
     const { data: order, error: orderError } = await supabase

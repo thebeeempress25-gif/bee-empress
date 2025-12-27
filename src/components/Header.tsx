@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ShoppingBag, Heart, Menu, X, MessageCircle } from 'lucide-react';
 
-
 type HeaderProps = {
   cartItemCount: number;
   wishlistCount: number;
@@ -33,7 +32,7 @@ export default function Header({ cartItemCount, wishlistCount, onCartClick, onWi
   return (
     <>
       <div className="bg-[#D69C4A] text-[#1F2124] text-center py-2 px-4 text-sm">
-        Free shipping on orders over Rs 1500 · Sustainably sourced beeswax
+        Free shipping on orders over $100 · Sustainably sourced beeswax
       </div>
 
       <header
@@ -53,9 +52,14 @@ export default function Header({ cartItemCount, wishlistCount, onCartClick, onWi
             <div className="flex-shrink-0">
               <button
                 onClick={() => onNavigate('home')}
-                className="text-2xl font-serif text-[#1F2124] hover:text-[#D69C4A] transition-colors"
+                className="group relative text-2xl font-serif text-[#1F2124] hover:text-[#D69C4A] transition-colors"
               >
-                The Bee Empress
+                <span>The Bee Empress</span>
+                <img
+                  src="/images/bee-icon.png"
+                  alt=""
+                  className="absolute -top-3 -right-6 w-7 h-7 pointer-events-none transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 mix-blend-multiply"
+                />
               </button>
             </div>
 

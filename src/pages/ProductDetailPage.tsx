@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase, type Product } from '../lib/supabase';
 import { ShoppingBag, Heart, Share2, ChevronRight, Star, Check } from 'lucide-react';
 import { addToWishlist, removeFromWishlist, isInWishlist } from '../lib/wishlist';
@@ -24,18 +24,18 @@ export default function ProductDetailPage({
     fetchProduct();
   }, [slug]);
 
-  useEffect(() => {
-    if (product) {
-      checkWishlistStatus();
-    }
-  }, [product]);
-
-  async function checkWishlistStatus() {
+  const checkWishlistStatus = useCallback(async () => {
     if (product) {
       const status = await isInWishlist(product.id);
       setInWishlist(status);
     }
-  }
+  }, [product]);
+
+  useEffect(() => {
+    if (product) {
+      checkWishlistStatus();
+    }
+  }, [product, checkWishlistStatus]);
 
   async function toggleWishlist() {
     if (!product) return;
@@ -228,8 +228,8 @@ export default function ProductDetailPage({
                 <button
                   onClick={toggleWishlist}
                   className={`px-6 py-4 border rounded-lg transition-colors ${inWishlist
-                      ? 'border-[#D69C4A] bg-[#FFF9F2] text-[#D69C4A]'
-                      : 'border-gray-300 hover:bg-gray-50'
+                    ? 'border-[#D69C4A] bg-[#FFF9F2] text-[#D69C4A]'
+                    : 'border-gray-300 hover:bg-gray-50'
                     }`}
                   aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                 >

@@ -88,8 +88,9 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
-                    className={`aspect-square bg-[#F4EDE6] rounded-lg overflow-hidden border-2 transition-colors ${idx === selectedImage ? 'border-[#D69C4A]' : 'border-transparent'
-                      }`}
+                    className={`aspect-square bg-[#F4EDE6] rounded-lg overflow-hidden border-2 transition-colors ${
+                      idx === selectedImage ? 'border-[#D69C4A]' : 'border-transparent'
+                    }`}
                   >
                     <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
                   </button>
@@ -137,9 +138,9 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
               </div>
 
               <div className="flex items-center gap-3 mb-3">
-                <p className="text-2xl text-[#D69C4A] font-serif">Rs {displayPrice}</p>
+                <p className="text-2xl text-[#D69C4A] font-serif">${displayPrice}</p>
                 {hasDiscount && (
-                  <p className="text-lg text-gray-400 line-through">Rs {product.price}</p>
+                  <p className="text-lg text-gray-400 line-through">${product.price}</p>
                 )}
               </div>
             </div>
@@ -200,10 +201,11 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
 
                 <button
                   onClick={toggleWishlist}
-                  className={`px-4 py-3.5 border rounded-lg transition-colors ${inWishlist
-                    ? 'border-[#D69C4A] bg-[#FFF9F2] text-[#D69C4A]'
-                    : 'border-gray-300 hover:bg-gray-50'
-                    }`}
+                  className={`px-4 py-3.5 border rounded-lg transition-colors ${
+                    inWishlist
+                      ? 'border-[#D69C4A] bg-[#FFF9F2] text-[#D69C4A]'
+                      : 'border-gray-300 hover:bg-gray-50'
+                  }`}
                   aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                 >
                   <Heart size={18} className={inWishlist ? 'fill-[#D69C4A]' : ''} />

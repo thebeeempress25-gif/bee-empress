@@ -34,9 +34,8 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
               <button
                 key={idx}
                 onClick={() => setImageIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  idx === imageIndex ? 'bg-white w-6' : 'bg-white/50'
-                }`}
+                className={`w-2 h-2 rounded-full transition-all ${idx === imageIndex ? 'bg-white w-6' : 'bg-white/50'
+                  }`}
                 aria-label={`View image ${idx + 1}`}
               />
             ))}
@@ -44,9 +43,8 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
         )}
 
         <div
-          className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-3 transition-opacity duration-300 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-black/40 flex items-center justify-center gap-3 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
         >
           <button
             onClick={() => onQuickView(product)}

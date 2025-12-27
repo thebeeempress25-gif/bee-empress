@@ -47,17 +47,19 @@ export async function loadCart(): Promise<CartItemWithProduct[]> {
   }
 
   return (data || []).map(item => {
+    // Handle products relation - it can be an object or array depending on Supabase version
     const product = Array.isArray(item.products) ? item.products[0] : item.products;
+    
     return {
       id: item.id,
       product_id: item.product_id,
       quantity: item.quantity,
       gift_wrap: item.gift_wrap,
       product: {
-        name: product?.name,
-        price: product?.price,
-        images: product?.images,
-        slug: product?.slug,
+        name: product?.name || '',
+        price: product?.price || 0,
+        images: product?.images || [],
+        slug: product?.slug || '',
       }
     };
   });

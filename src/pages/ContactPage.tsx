@@ -134,10 +134,10 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-[#1F2124] mb-1">Email</h4>
                     <a
-                      href="mailto:thebeeempress25@gmail.com"
+                      href="mailto:info@thebeeempress.com"
                       className="text-gray-600 hover:text-[#D69C4A] transition-colors"
                     >
-                      thebeeempress25@gmail.com
+                      info@thebeeempress.com
                     </a>
                   </div>
                 </div>

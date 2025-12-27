@@ -18,7 +18,7 @@ RETURNS text
 LANGUAGE plpgsql
 SECURITY DEFINER
 SET search_path = public
-AS RsRs
+AS $$
 DECLARE
   new_number text;
   exists_check boolean;
@@ -33,26 +33,26 @@ BEGIN
   
   RETURN new_number;
 END;
-RsRs;
+$$;
 
 -- Fix update_order_timestamp function
 CREATE OR REPLACE FUNCTION update_order_timestamp()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 SET search_path = public
-AS RsRs
+AS $$
 BEGIN
   NEW.updated_at = now();
   RETURN NEW;
 END;
-RsRs;
+$$;
 
 -- Fix track_order_status_change function
 CREATE OR REPLACE FUNCTION track_order_status_change()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 SET search_path = public
-AS RsRs
+AS $$
 BEGIN
   IF (TG_OP = 'INSERT') OR (OLD.status IS DISTINCT FROM NEW.status) THEN
     INSERT INTO order_status_history (order_id, status, notes)
@@ -60,4 +60,4 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-RsRs;
+$$;

@@ -30,7 +30,7 @@ CREATE POLICY "Allow public read access to collections"
   USING (true);
 
 -- Check if wishlists table exists and has proper policies
-DO RsRs
+DO $$
 BEGIN
   IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'wishlists') THEN
     DROP POLICY IF EXISTS "Users can view own wishlist" ON wishlists;
@@ -54,4 +54,4 @@ BEGIN
       TO authenticated
       USING (auth.uid() = user_id);
   END IF;
-END RsRs;
+END $$;
