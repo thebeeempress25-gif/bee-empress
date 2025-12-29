@@ -16,26 +16,28 @@ export default function AboutPage() {
             <h2 className="font-serif text-4xl text-[#1F2124] mb-6">Our Story</h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                The Bee Empress was born from a simple belief: luxury and sustainability are not
-                opposites—they're partners. In 2019, we began our journey in a small workshop,
-                hand-pouring candles with ethically sourced beeswax from local beekeepers.
+                Born from silence. Crafted with intention.
+                Illuminated by purpose.
+                Rooted in the sacred stillness of Almora, Uttarakhand, and refined in the contemporary elegance of Gurgaon, our brand is where ancient wisdom meets modern luxury.
+                This journey began when Chitra chose to step away from the noise of corporate life and return to the essence of being slowness, spirituality, and soulful creation. Guided by ritual, reverence for nature, and the transformative power of light, she founded a brand devoted to artisanal beeswax candles and solid perfumes.
               </p>
               <p>
-                What started as a passion project has grown into a movement. Today, we work with
-                regenerative beekeepers across the country, ensuring that every candle supports
-                healthy bee populations and thriving ecosystems.
+                We are honored to create the first pure beeswax solid perfume collection, blending rare, fresh fragrances with the purity of nature’s most sacred wax. Each piece is hand-poured, slow-crafted, and energetically cleansed, designed not merely to scent a space—but to elevate it.
               </p>
-              <p>
-                Every product we create is a love letter to nature—meticulously crafted, thoughtfully
-                packaged, and designed to bring beauty into your daily rituals. We believe that true
-                luxury is knowing exactly where your products come from and feeling good about the
-                impact they make.
-              </p>
+              <p>Our creations are:</p>
+
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Symbols of light and awakening</li>
+                <li>Expressions of understated luxury</li>
+                <li>Sacred objects for modern rituals</li>
+              </ul>
             </div>
             <div className="mt-8 pt-8 border-t border-gray-200">
               <blockquote className="text-xl font-serif text-[#D69C4A] italic">
-                "We don't just make candles. We create moments of peace, mindfulness, and connection
-                to the natural world."
+                We believe true luxury is intentional, ethical, and soulful.
+                Every flame carries warmth. Every fragrance holds prayer.
+                This is not indulgence.
+                This is devotion, made luminous.
               </blockquote>
               <p className="mt-4 text-sm text-gray-600">— Founder, The Bee Empress</p>
             </div>
@@ -66,22 +68,58 @@ export default function AboutPage() {
             />
           </div>
           <div>
-            <h2 className="font-serif text-4xl text-[#1F2124] mb-4">Meet Our CEO</h2>
-            <h3 className="text-2xl text-[#D69C4A] mb-6">Chitra</h3>
+            <h2 className="font-serif text-4xl text-[#1F2124] mb-4">
+              Meet Our CEO
+            </h2>
+
+            <h3 className="text-2xl text-[#D69C4A] mb-1">
+              Chitra
+            </h3>
+
+            <p className="text-sm text-gray-500 mb-6">
+              Founder | Artisan | Spiritual Visionary
+            </p>
+
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Chitra founded The Bee Empress with a vision to revolutionize the candle industry by putting sustainability at the heart of luxury. With over 15 years of experience in sustainable product development and a lifelong passion for environmental conservation, she has built The Bee Empress into a beacon of ethical business practices.
+                Born in the tranquil Himalayan town of Almora, Uttarakhand, and now living in Gurgaon, Chitra embodies a life lived between serenity and sophistication.
+                Her early years, surrounded by mountains, temples, and silence, deeply shaped her spiritual sensibility. Though her professional path led her into the corporate world, her soul longed for creation rooted in meaning rather than momentum.
               </p>
+
               <p>
-                A former environmental scientist, chitra spent years researching bee populations and the critical role they play in our ecosystems. This deep understanding drives every decision at The Bee Empress—from the beeswax we source to the partnerships we cultivate.
-              </p>
-              <p>
-                Under her leadership, The Bee Empress has grown from a small workshop to a recognized brand, all while maintaining an unwavering commitment to regenerative practices and bee conservation.
+                Answering that call, Chitra left corporate life to devote herself to handcrafted luxury infused with spirituality. Her work is inspired by sacred rituals, mindful living, and the belief that light and fragrance can shift energy, heal emotions, and awaken presence.
+                As the creator of the first pure beeswax solid perfume line, Chitra blends ancient traditions with modern elegance—creating sensorial experiences that feel intimate, elevated, and timeless.
               </p>
             </div>
+
+            {/* Philosophy Section */}
+            <div className="mt-6">
+              <p className="font-medium text-[#1F2124] mb-3">
+                Her philosophy is simple yet profound:
+              </p>
+
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Luxury must feel pure</li>
+                <li>Fragrance must feel alive</li>
+                <li>Light must feel sacred</li>
+              </ul>
+            </div>
+
+            {/* Closing Thought */}
+            <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">
+              <p>
+                Every creation reflects her intention to serve as a gentle guide—a flame in moments of stillness, a fragrance in moments of becoming.
+              </p>
+
+              <p>
+                Chitra’s purpose is not just to create products, but to create experiences of calm, clarity, and inner radiance.
+              </p>
+            </div>
+
+            {/* Quote */}
             <div className="mt-6 p-6 bg-[#FFF9F2] rounded-lg border-l-4 border-[#D69C4A]">
               <p className="text-gray-700 italic">
-                "Every product we create is a testament to what's possible when we prioritize the planet alongside profit. We're not just building a business—we're nurturing a movement."
+                “To be a light for others—quietly, consciously, beautifully.”
               </p>
             </div>
           </div>
