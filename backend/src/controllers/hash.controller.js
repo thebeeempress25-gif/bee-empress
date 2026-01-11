@@ -1,5 +1,5 @@
 import { generateSecureHash } from "../services/hash.service.js";
-import {env} from "../config/env.js";
+import { env } from "../config/env.js";
 
 export const generateHash = (req, res) => {
   try {
@@ -27,7 +27,7 @@ export const generateHash = (req, res) => {
 };
 
 export const initiateSale = async (req, res) => {
-     try {
+  try {
     const response = await fetch(
       "https://pgpayuat.icicibank.com/tsp/pg/api/v2/initiateSale",
       {

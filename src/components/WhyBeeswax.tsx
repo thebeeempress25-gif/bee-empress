@@ -1,33 +1,33 @@
 export default function WhyBeeswax() {
   const benefits = [
     {
-      title: 'Air Purifying',
-      description: 'Releases negative ions that naturally cleanse your air and remove pollutants',
+      title: 'Naturally Purifies the Air',
+      description: 'When lit, beeswax gently releases negative ions that help neutralize airborne impurities and Odors, creating a cleaner, calmer space.',
       image: 'https://images.pexels.com/photos/3951628/pexels-photo-3951628.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Long Burning',
-      description: '60+ hours of clean, smoke-free burn time with a natural honey scent',
+      title: 'Unparalleled Burn Time',
+      description: 'With its naturally high melting point, beeswax burns slower and longer, offering enduring beauty and exceptional value.',
       image: 'https://images.pexels.com/photos/4040610/pexels-photo-4040610.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Ethically Sourced',
-      description: 'Supporting regenerative beekeeping practices and healthy bee populations',
+      title: 'Immaculate, Clean Flame',
+      description: 'Beeswax candles burn with remarkable purity, producing virtually no smoke or soot.',
       image: 'https://images.pexels.com/photos/6945095/pexels-photo-6945095.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Natural & Non-Toxic',
-      description: 'Free from synthetic fragrances, petroleum products, and harmful chemicals',
+      title: 'Pure, Natural & Non-Toxic',
+      description: 'Free from petroleum, additives, and synthetic chemicals — only nature, as intended.',
       image: 'https://images.pexels.com/photos/3568459/pexels-photo-3568459.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Brighter Flame',
-      description: 'Burns with a warm, natural light similar to sunlight for a cozy atmosphere',
+      title: 'A Subtle Signature Aroma',
+      description: 'A delicate, honeyed scent lingers naturally, even without added fragrance.',
       image: 'https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Biodegradable',
-      description: '100% renewable and returns to nature without leaving harmful residue',
+      title: 'Sustainably Luxurious',
+      description: 'Renewable, biodegradable, and supportive of beekeeping traditions that nurture our planet.',
       image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
   ];
@@ -37,10 +37,10 @@ export default function WhyBeeswax() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-[#1F2124] mb-4">
-            Why Beeswax?
+            The Beeswax Difference
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Nature's most perfect wax, transformed into luxury you can feel good about
+          <p className="font-serif text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Beeswax is nature's most exquisite candle wax, treasured for centuries by royalty, temples, and artisans alike. Crafted by honeybees and perfected by nature, beeswax is entirely pure and minimally processed, unlike modern waxes derived from petroleum or heavily refined plants. Its warm golden glow, clean-burning flame, and subtle natural honey aroma create an atmosphere of quiet luxury and well-being. Choosing beeswax is a return to authenticity — a celebration of craftsmanship, sustainability, and timeless elegance.
           </p>
         </div>
 
@@ -66,22 +66,6 @@ export default function WhyBeeswax() {
           ))}
         </div>
 
-        <div className="mt-16 bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
-          <div className="text-center max-w-3xl mx-auto">
-            <h3 className="font-serif text-3xl text-[#1F2124] mb-6">The Beeswax Difference</h3>
-            <p className="text-gray-700 leading-relaxed text-lg mb-6">
-              Unlike paraffin or soy candles, beeswax is a natural byproduct of honey production. It burns cleaner,
-              lasts longer, and actually improves your indoor air quality. When you choose beeswax, you're not just
-              getting a superior candle—you're supporting sustainable beekeeping and protecting our planet's most
-              important pollinators.
-            </p>
-            <div className="inline-block bg-[#FFF9F2] px-6 py-3 rounded-lg border-l-4 border-[#D69C4A]">
-              <p className="text-[#D69C4A] font-serif text-lg">
-                Nature's gift, crafted with care
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
