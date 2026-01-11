@@ -48,8 +48,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             Luxury In Every Flame
           </h1>
           <p className="font-serif text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Hand-Poured Beeswax Candles, Solid Perfumes, and Fragrance Bars.
-          Ethically Sourced. Sustainably Crafted. Timelessly Beautiful.
+            Hand-Poured Beeswax Candles, Solid Perfumes & Fragrance Bars. Ethically Sourced. Sustainably Crafted. Timelessly Beautiful.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -90,8 +89,8 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             <h2 className="font-serif text-4xl md:text-5xl text-[#1F2124] mb-4">
               Our Collections
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Each collection tells a story of craftsmanship, sustainability, and timeless luxury
+            <p className="font-serif text-lg text-gray-600 max-w-2xl mx-auto">
+              Each collection tells a story of craftsmanship, sustainability & timeless luxury
             </p>
           </div>
 
@@ -127,7 +126,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             <h2 className="font-serif text-4xl md:text-5xl text-[#1F2124] mb-4">
               Best Sellers
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="font-serif text-lg text-gray-600">
               Our most loved creations, chosen by the hive
             </p>
           </div>
@@ -166,12 +165,11 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
                 The Beeswax
                 <span className="block text-[#D69C4A] italic">Difference</span>
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                For centuries, beeswax has been revered as nature's most luxurious and sustainable wax.
-                Our candles harness this ancient wisdom, creating an experience that transcends ordinary ambiance.
+              <p className="font-serif text-lg text-gray-700 leading-relaxed mb-6">
+                Beeswax is nature's most exquisite candle wax, treasured for centuries by royalty, temples, and artisans alike. Crafted by honeybees and perfected by nature, beeswax is entirely pure and minimally processed, unlike modern waxes derived from petroleum or heavily refined plants.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Unlike paraffin or soy, beeswax burns cleaner, lasts longer, and naturally purifies the air around you. Each candle is a testament to nature's perfection and human craftsmanship.
+              <p className="font-serif text-gray-600 leading-relaxed mb-8">
+                Its warm golden glow, clean-burning flame, and subtle natural honey aroma create an atmosphere of quiet luxury and well-being. Choosing beeswax is a return to authenticity — a celebration of craftsmanship, sustainability, and timeless elegance.
               </p>
               <div className="w-24 h-1 bg-[#D69C4A]"></div>
             </div>
@@ -184,25 +182,43 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: 'Air Purifying',
-                description: 'Releases negative ions that naturally cleanse your air, reducing allergens and pollutants',
+                title: 'Naturally Purifies the Air',
+                description: 'When lit, beeswax gently releases negative ions that help neutralize airborne impurities and Odors, creating a cleaner, calmer space.',
                 stat: '100%',
                 label: 'Natural'
               },
               {
-                title: 'Long Burning',
-                description: 'Dense molecular structure provides 60+ hours of clean, smoke-free illumination',
+                title: 'Unparalleled Burn Time',
+                description: 'With its naturally high melting point, beeswax burns slower and longer, offering enduring beauty and exceptional value.',
                 stat: '60+',
                 label: 'Hours'
               },
               {
-                title: 'Ethically Sourced',
-                description: 'Supporting regenerative beekeeping practices that protect and nurture bee populations',
+                title: 'Immaculate, Clean Flame',
+                description: 'Beeswax candles burn with remarkable purity, producing virtually no smoke or soot.',
                 stat: '0%',
-                label: 'Toxins'
+                label: 'Soot'
+              },
+              {
+                title: 'Pure, Natural & Non-Toxic',
+                description: 'Free from petroleum, additives, and synthetic chemicals — only nature, as intended.',
+                stat: '100%',
+                label: 'Pure'
+              },
+              {
+                title: 'A Subtle Signature Aroma',
+                description: 'A delicate, honeyed scent lingers naturally, even without added fragrance.',
+                stat: '✓',
+                label: 'Natural Scent'
+              },
+              {
+                title: 'Sustainably Luxurious',
+                description: 'Renewable, biodegradable, and supportive of beekeeping traditions that nurture our planet.',
+                stat: '♻',
+                label: 'Eco-Friendly'
               },
             ].map((benefit) => (
               <div key={benefit.title} className="group">
@@ -231,8 +247,8 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             <h2 className="font-serif text-4xl md:text-5xl text-[#1F2124] mb-4">
               Our World
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A glimpse into our craft, our values, and the beauty we create
+            <p className="font-serif text-lg text-gray-600 max-w-2xl mx-auto">
+              A glimpse into our craft, our values & the beauty we create.
             </p>
           </div>
 
