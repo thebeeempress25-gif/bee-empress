@@ -54,39 +54,68 @@ export default function CandlesPage({ onQuickView, onAddToCart, onNavigate, init
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Main Hero Section - BEESWAX SCENTED CANDLES */}
       <section className="relative py-24 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => onNavigate('shop')}
-            className="text-[#D69C4A] hover:text-[#1F2124] transition-colors text-sm uppercase tracking-wider mb-4"
+            className="text-[#D69C4A] hover:text-[#1F2124] transition-colors text-sm uppercase tracking-wider mb-8"
           >
             ← Back to Shop
           </button>
-          <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-4">
-            {selectedCollection?.name || 'Luxury Collection'}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            {selectedCollection?.description || 'Opulent scents crafted for grand spaces and special moments. Each candle in our Luxury line tells a story of refinement.'}
-          </p>
+
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-6">
+              BEESWAX SCENTED CANDLES
+            </h1>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 font-serif">
+              Our beeswax candles infuse your space with sophisticated scent compositions, each crafted to evoke serenity, grandeur, and timeless allure. With a natural golden glow & exquisite fragrance diffusion, these candles transform any room into a haven of opulence.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-gray-600">
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Slow burning</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Clean, toxin-free</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Fragrances curated for the refined palate</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-12 bg-[#F4EDE6] border-b border-gray-200">
+      {/* Collection-Specific Section with Toggles */}
+      <section className="py-16 bg-white border-b border-gray-200">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          {/* Collection Toggle Buttons */}
+          <div className="flex gap-3 justify-center mb-12">
             {candleSubcategories.map((sub) => (
               <button
                 key={sub.slug}
                 onClick={() => setSelectedSubcategory(sub.slug)}
-                className={`px-6 py-3 rounded-lg transition-all whitespace-nowrap font-medium ${
-                  selectedSubcategory === sub.slug
-                    ? 'bg-[#D69C4A] text-white'
-                    : 'bg-white text-[#1F2124] border border-gray-300 hover:bg-gray-50'
-                }`}
+                className={`px-8 py-3 rounded-full transition-all whitespace-nowrap font-medium text-sm uppercase tracking-wider ${selectedSubcategory === sub.slug
+                    ? 'bg-[#D69C4A] text-white shadow-lg'
+                    : 'bg-transparent text-gray-600 border-2 border-gray-300 hover:border-[#D69C4A] hover:text-[#D69C4A]'
+                  }`}
               >
                 {sub.name}
               </button>
             ))}
+          </div>
+
+          {/* Collection Details */}
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-serif text-4xl text-[#1F2124] mb-4">
+              {selectedCollection?.name || 'Luxury Collection'}
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              {selectedCollection?.description || 'Opulent scents crafted for grand spaces and special moments. Each candle in our Luxury line tells a story of refinement.'}
+            </p>
           </div>
         </div>
       </section>
