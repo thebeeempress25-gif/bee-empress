@@ -224,7 +224,7 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
             </div>
 
             {product.reasons_to_love && product.reasons_to_love.length > 0 && (
-              <div className="bg-[#FFF9F2] rounded-lg p-4">
+              <div className="border border-gray-200 rounded-lg p-4">
                 <h3 className="font-medium text-[#1F2124] mb-3 text-sm">Reasons to Love</h3>
                 <ul className="space-y-2">
                   {product.reasons_to_love.map((reason, idx) => (
@@ -233,6 +233,60 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
                       <span>{reason}</span>
                     </li>
                   ))}
+                </ul>
+              </div>
+            )}
+
+            {product.type === 'solid_perfume' && (
+              <div className="bg-gradient-to-br from-[#FFF9F2] to-[#F4EDE6] rounded-lg p-4">
+                <h3 className="font-medium text-[#1F2124] mb-3 text-sm">How to Use</h3>
+                <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                  Gently rub your finger on the surface of the solid perfume and apply to pulse points such as:
+                </p>
+                <ul className="space-y-1.5 mb-3">
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Wrists</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Neck</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Behind ears</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Inner elbows</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                  Reapply as needed for a refreshing touch of fragrance.
+                </p>
+
+                <h4 className="font-medium text-[#1F2124] mb-2 text-sm">Perfect For</h4>
+                <ul className="space-y-1.5">
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Daily wear</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Office & casual outings</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Gifting</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>People with sensitive skin</span>
+                  </li>
+                  <li className="flex gap-2 text-gray-700 text-sm">
+                    <span className="text-[#D69C4A]">✓</span>
+                    <span>Natural fragrance lovers</span>
+                  </li>
                 </ul>
               </div>
             )}
