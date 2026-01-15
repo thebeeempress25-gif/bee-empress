@@ -46,12 +46,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 gap-4">
             <div></div>
             <img
-              src="https://images.pexels.com/photos/3688761/pexels-photo-3688761.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="/images/ourstory1.jpg"
               alt="Pouring candles"
               className="rounded-lg w-full h-64 object-cover mt-8"
             />
             <img
-              src="https://images.pexels.com/photos/4207892/pexels-photo-4207892.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="/images/golden _oud_Arabia_3.png"
               alt="Finished products"
               className="rounded-lg w-full h-64 object-cover"
             />
