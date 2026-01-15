@@ -175,7 +175,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             </div>
             <div className="lg:col-span-3 relative aspect-[4/3] lg:aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/8953391/pexels-photo-8953391.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="/images/beewax.jpeg"
                 alt="Natural beeswax honeycomb"
                 className="w-full h-full object-cover"
               />
@@ -223,15 +223,9 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
             ].map((benefit) => (
               <div key={benefit.title} className="group">
                 <div className="bg-white rounded-2xl p-8 h-full shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-serif text-[#1F2124] mb-2">{benefit.title}</h3>
-                      <div className="w-12 h-0.5 bg-[#D69C4A] group-hover:w-20 transition-all duration-300"></div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-3xl font-serif text-[#D69C4A]">{benefit.stat}</div>
-                      <div className="text-xs uppercase tracking-wider text-gray-500">{benefit.label}</div>
-                    </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-serif text-[#1F2124] mb-2">{benefit.title}</h3>
+                    <div className="w-12 h-0.5 bg-[#D69C4A] group-hover:w-20 transition-all duration-300"></div>
                   </div>
                   <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                 </div>
@@ -255,7 +249,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
           <div className="grid grid-cols-12 gap-4 auto-rows-[200px]">
             <div className="col-span-12 md:col-span-8 row-span-2 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="https://images.pexels.com/photos/3735218/pexels-photo-3735218.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                src="/images/making-candles.webp"
                 alt="Beeswax candle making process"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -268,7 +262,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
 
             <div className="col-span-6 md:col-span-4 row-span-1 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="https://images.pexels.com/photos/2526105/pexels-photo-2526105.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/beewaxxx.jpg"
                 alt="Natural ingredients"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -290,7 +284,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
 
             <div className="col-span-6 md:col-span-5 row-span-2 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/making-candles.webp"
                 alt="Aromatherapy experience"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -312,7 +306,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
 
             <div className="col-span-6 md:col-span-4 row-span-1 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="https://images.pexels.com/photos/6620874/pexels-photo-6620874.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/making-candles.webp"
                 alt="Sustainable packaging"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
