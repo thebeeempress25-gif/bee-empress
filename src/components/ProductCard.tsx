@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Eye, ShoppingBag } from 'lucide-react';
 import type { Product } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
+import { getCollectionTags } from '../utils/collectionAttributes';
 
 type ProductCardProps = {
   product: Product;
@@ -11,6 +13,26 @@ type ProductCardProps = {
 export default function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
+  const [collectionSlug, setCollectionSlug] = useState<string>('');
+
+  useEffect(() => {
+    async function fetchCollectionSlug() {
+      const { data } = await supabase
+        .from('collections')
+        .select('slug')
+        .eq('id', product.collection_id)
+        .single();
+
+      if (data) {
+        setCollectionSlug(data.slug);
+      }
+    }
+
+    fetchCollectionSlug();
+  }, [product.collection_id]);
+
+  const collectionTags = getCollectionTags(collectionSlug);
+  const displayTags = collectionTags.length > 0 ? collectionTags : product.scent_notes.top?.slice(0, 3) || [];
 
   return (
     <div
@@ -81,14 +103,14 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
         </h3>
         <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.short_description}</p>
 
-        {product.scent_notes.top && (
+        {displayTags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">
-            {product.scent_notes.top.slice(0, 3).map((note) => (
+            {displayTags.map((tag) => (
               <span
-                key={note}
+                key={tag}
                 className="text-xs text-[#8A9A5B] bg-[#F4EDE6] px-2 py-1 rounded"
               >
-                {note}
+                {tag}
               </span>
             ))}
           </div>

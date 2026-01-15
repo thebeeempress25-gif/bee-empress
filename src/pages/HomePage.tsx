@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { supabase, type Product, type Collection } from '../lib/supabase';
 import ProductCard from '../components/ProductCard';
+import { getCollectionTags, getCollectionTagline } from '../utils/collectionAttributes';
 
 type HomePageProps = {
+  onNavigate: (page: string, params?: Record<string, string>) => void;
   onQuickView: (product: Product) => void;
   onAddToCart: (productId: string, quantity: number) => void;
-  onNavigate: (page: string, params?: Record<string, string>) => void;
 };
 
-export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomePageProps) {
+export default function HomePage({ onNavigate, onQuickView, onAddToCart }: HomePageProps) {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,48 +19,61 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
   }, []);
 
   async function fetchData() {
-    const [collectionsData, productsData] = await Promise.all([
+    const [{ data: productsData }, { data: collectionsData }] = await Promise.all([
+      supabase.from('products').select('*').eq('is_featured', true).eq('is_active', true).limit(4),
       supabase.from('collections').select('*').order('display_order'),
-      supabase.from('products').select('*').eq('is_active', true),
     ]);
 
-    if (collectionsData.data) setCollections(collectionsData.data);
-    if (productsData.data) {
-      setFeaturedProducts(productsData.data.filter((p) => p.is_featured).slice(0, 4));
-    }
+    if (productsData) setFeaturedProducts(productsData);
+    if (collectionsData) setCollections(collectionsData);
     setLoading(false);
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FFF9F2] via-[#F4EDE6] to-[#FFF9F2]">
-          <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 bg-black">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-55"
+          >
+            <source
+              src="/images/1000126824-vmake.mp4"
+              type="video/mp4"
+            />
+            {/* Fallback image if video doesn't load */}
             <img
               src="https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=1920"
               alt="Luxury beeswax candles"
               className="w-full h-full object-cover"
             />
-          </div>
+          </video>
+          {/* Gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
+          <div className="absolute inset-0 bg-black/10" />
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#1F2124] mb-6 leading-tight">
-            Luxury In Every Flame
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight drop-shadow-lg">
+            Pure Beeswax, Timeless Luxury
           </h1>
-          <p className="font-serif text-xl sm:text-2xl text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Hand-Poured Beeswax Candles, Solid Perfumes & Fragrance Bars. Ethically Sourced. Sustainably Crafted. Timelessly Beautiful.
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md">
+            Hand-poured candles crafted with 100% natural beeswax, sustainable practices, and a
+            commitment to the hive
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => onNavigate('shop')}
-              className="px-8 py-4 bg-[#D69C4A] text-white rounded-lg hover:bg-[#c28a3a] transition-all duration-300 hover:shadow-lg font-medium uppercase tracking-wider text-sm"
+              className="px-8 py-4 bg-[#D69C4A] text-white rounded-lg hover:bg-[#c28a3a] transition-all duration-300 font-medium uppercase tracking-wider text-sm hover:shadow-2xl hover:scale-105"
             >
               Shop Candles
             </button>
             <button
               onClick={() => onNavigate('about')}
-              className="px-8 py-4 bg-transparent border-2 border-[#1F2124] text-[#1F2124] rounded-lg hover:bg-[#1F2124] hover:text-white transition-all duration-300 font-medium uppercase tracking-wider text-sm"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-[#1F2124] transition-all duration-300 font-medium uppercase tracking-wider text-sm hover:shadow-2xl hover:scale-105"
             >
               Our Story
             </button>
@@ -95,27 +109,44 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {collections.slice(0, 3).map((collection) => (
-              <button
-                key={collection.id}
-                onClick={() => onNavigate('candles', { collection: collection.slug })}
-                className="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-[#F4EDE6] text-left"
-              >
-                <img
-                  src={collection.image_url}
-                  alt={collection.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <h3 className="font-serif text-3xl mb-2">{collection.name}</h3>
-                  <p className="text-sm text-white/90 mb-4">{collection.description}</p>
-                  <span className="inline-block text-sm uppercase tracking-wider border-b-2 border-[#D69C4A] pb-1">
-                    Explore Collection
-                  </span>
-                </div>
-              </button>
-            ))}
+            {collections.slice(0, 3).map((collection) => {
+              const tags = getCollectionTags(collection.slug);
+              const tagline = getCollectionTagline(collection.slug);
+
+              return (
+                <button
+                  key={collection.id}
+                  onClick={() => onNavigate('candles', { collection: collection.slug })}
+                  className="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-[#F4EDE6] text-left"
+                >
+                  <img
+                    src={collection.image_url}
+                    alt={collection.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <h3 className="font-serif text-3xl mb-2">{collection.name}</h3>
+                    <p className="text-sm text-white/90 mb-4">{tagline || collection.description}</p>
+                    {tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white/90"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <span className="inline-block text-sm uppercase tracking-wider border-b-2 border-[#D69C4A] pb-1">
+                      Explore Collection
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -284,7 +315,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
 
             <div className="col-span-6 md:col-span-5 row-span-2 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="/images/making-candles.webp"
+                src="/images/smell.jpg"
                 alt="Aromatherapy experience"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -306,7 +337,7 @@ export default function HomePage({ onQuickView, onAddToCart, onNavigate }: HomeP
 
             <div className="col-span-6 md:col-span-4 row-span-1 group relative overflow-hidden rounded-2xl bg-[#F4EDE6] cursor-pointer">
               <img
-                src="/images/making-candles.webp"
+                src="/images/package.jpg"
                 alt="Sustainable packaging"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />

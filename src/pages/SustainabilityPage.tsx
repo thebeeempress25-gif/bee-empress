@@ -31,12 +31,27 @@ export default function SustainabilityPage() {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative py-24 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-4">
-            Our Commitment to Sustainability
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-8">
+            Where Luxury Honors the Earth
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Building a future where luxury and environmental responsibility go hand in hand
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed space-y-4">
+            <span className="block">
+              At The Bee Empress, sustainability is not an afterthought — it is the
+              foundation upon which our brand is built.
+              Every creation is crafted with reverence for nature, respect for the
+              hive, and a commitment to ensuring that luxury and responsibility
+              coexist in perfect harmony.
+            </span>
+
+            <span className="block">
+              Our mission is simple:
+            </span>
+
+            <span className="block">
+              To create products that feel indulgent, look exquisite, and remain
+              kind to the planet that inspires them.
+            </span>
           </p>
         </div>
       </section>
@@ -198,67 +213,13 @@ export default function SustainabilityPage() {
         </div>
 
         <div className="mt-24">
-          <h2 className="font-serif text-4xl text-[#1F2124] mb-8 text-center">Our Beekeeper Partners</h2>
-          <p className="text-gray-700 leading-relaxed mb-12 max-w-3xl mx-auto text-center text-lg">
-            We're proud to work with family-owned beekeeping operations across the country. Each
-            partner shares our commitment to regenerative practices, bee welfare, and environmental
-            stewardship.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-              <img
-                src="https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Beekeeper with hive"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="font-serif text-xl text-[#1F2124] mb-2">Mountain Meadow Apiaries</h3>
-                <p className="text-gray-600 text-sm mb-2">Colorado • Family-owned since 1987</p>
-                <p className="text-gray-700 leading-relaxed">
-                  Specializing in high-altitude wildflower honey and regenerative beekeeping practices that restore native habitats.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-              <img
-                src="https://images.pexels.com/photos/4022092/pexels-photo-4022092.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Bee farm landscape"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="font-serif text-xl text-[#1F2124] mb-2">Pacific Coast Bees</h3>
-                <p className="text-gray-600 text-sm mb-2">Oregon • Certified Organic</p>
-                <p className="text-gray-700 leading-relaxed">
-                  Three generations of sustainable beekeeping, focused on coastal wildflower varieties and pollinator health.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-              <img
-                src="https://images.pexels.com/photos/6945095/pexels-photo-6945095.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Beekeepers working"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="font-serif text-xl text-[#1F2124] mb-2">Heartland Honey Co.</h3>
-                <p className="text-gray-600 text-sm mb-2">Iowa • Pesticide-Free</p>
-                <p className="text-gray-700 leading-relaxed">
-                  Committed to chemical-free hive management and working with local farmers to create bee-friendly landscapes.
-                </p>
-              </div>
-            </div>
-          </div>
-
           <div className="bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6] rounded-2xl p-10 border border-gray-200">
             <div className="text-center max-w-2xl mx-auto">
               <p className="text-xl text-gray-700 italic mb-4 font-serif">
                 "Partnership, not just supply chain."
               </p>
               <p className="text-gray-600">
-                By choosing The Bee Empress, you're directly supporting these dedicated families and their mission to create thriving habitats for bees across America.
+                By choosing The Bee Empress, you're directly supporting these dedicated families and their mission to create thriving habitats for bees across India.
               </p>
             </div>
           </div>

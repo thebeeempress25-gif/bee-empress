@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative">
             <img
-              src="https://images.pexels.com/photos/3756681/pexels-photo-3756681.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="/images/chitra.jpg"
               alt="CEO Portrait"
               className="rounded-2xl w-full h-[500px] object-cover shadow-lg"
             />

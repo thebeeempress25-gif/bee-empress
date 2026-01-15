@@ -17,6 +17,10 @@ export type Collection = {
   image_url: string;
   display_order: number;
   parent_collection_id?: string;
+  attributes?: {
+    tags?: string[];
+    tagline?: string;
+  };
   created_at: string;
 };
 
