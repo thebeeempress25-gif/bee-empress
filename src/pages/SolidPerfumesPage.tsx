@@ -47,7 +47,8 @@ export default function SolidPerfumesPage({ onQuickView, onAddToCart, onNavigate
             Solid Perfumes
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl">
-            Portable luxury in sustainable wax form. Our solid perfumes offer long-lasting fragrance with the convenience of travel-friendly application.
+            Handcrafted using pure beeswax and premium fragrance oils, these solid perfumes offer a subtle yet long-lasting aroma that melts gently into your skin.
+            Unlike alcohol-based perfumes, our solid perfumes are skin-friendly, travel-safe, and eco-conscious, making them perfect for everyday wear.
           </p>
         </div>
       </section>
