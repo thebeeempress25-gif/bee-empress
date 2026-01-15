@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { supabase, type Product } from '../lib/supabase';
 import { ShoppingBag, Heart, Share2, ChevronRight, Star, Check } from 'lucide-react';
 import { addToWishlist, removeFromWishlist, isInWishlist } from '../lib/wishlist';
+import { getScentNoteLabel } from '../utils/scentNoteLabels';
 
 type ProductDetailPageProps = {
   slug: string;
@@ -168,19 +169,19 @@ export default function ProductDetailPage({
                 <div className="space-y-2">
                   {product.scent_notes.top.length > 0 && (
                     <div>
-                      <span className="font-medium text-[#1F2124]">Top:</span>{' '}
+                      <span className="font-medium text-[#1F2124]">{getScentNoteLabel('top')}:</span>{' '}
                       <span className="text-gray-700">{product.scent_notes.top.join(', ')}</span>
                     </div>
                   )}
                   {product.scent_notes.heart.length > 0 && (
                     <div>
-                      <span className="font-medium text-[#1F2124]">Heart:</span>{' '}
+                      <span className="font-medium text-[#1F2124]">{getScentNoteLabel('heart')}:</span>{' '}
                       <span className="text-gray-700">{product.scent_notes.heart.join(', ')}</span>
                     </div>
                   )}
                   {product.scent_notes.base.length > 0 && (
                     <div>
-                      <span className="font-medium text-[#1F2124]">Base:</span>{' '}
+                      <span className="font-medium text-[#1F2124]">{getScentNoteLabel('base')}:</span>{' '}
                       <span className="text-gray-700">{product.scent_notes.base.join(', ')}</span>
                     </div>
                   )}
@@ -250,6 +251,62 @@ export default function ProductDetailPage({
                 <h3 className="font-serif text-2xl text-[#1F2124] mb-4">About This Product</h3>
                 <div className="prose prose-sm max-w-none">
                   <p className="text-gray-700 leading-relaxed whitespace-pre-line">{product.full_description}</p>
+                </div>
+              </div>
+            )}
+
+            {product.type === 'fragrance_bar' && (
+              <div className="pt-6 border-t border-gray-200">
+                <h3 className="font-serif text-2xl text-[#1F2124] mb-6">A Two-Stage Fragrance Experience</h3>
+
+                <div className="space-y-6">
+                  <div className="bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6] rounded-xl p-6">
+                    <h4 className="font-semibold text-lg text-[#D69C4A] mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-full bg-[#D69C4A] text-white flex items-center justify-center text-sm">1</span>
+                      Cold Throw (Unlit Use)
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      As fragrance bars, they slowly diffuse scent without heat, keeping spaces delicately perfumed for up to 6 months.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6] rounded-xl p-6">
+                    <h4 className="font-semibold text-lg text-[#D69C4A] mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-full bg-[#D69C4A] text-white flex items-center justify-center text-sm">2</span>
+                      Hot Throw (Candle Use)
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Once the cold throw fades, the fragrance bar transforms beautifully into a candle. Simply light it to release a richer, fuller aroma, filling the room with a warm, comforting fragrance.
+                    </p>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-6 border-2 border-[#D69C4A]">
+                    <h4 className="font-serif text-xl text-[#1F2124] mb-3">Peony Flower Candle – Designed to Transform</h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      This fragrance bar is shaped as a peony flower candle, combining beauty and function. What begins as a space fragrance evolves into a glowing candle experience—ensuring nothing goes to waste and luxury lasts longer.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-[#8A9A5B]/10 to-[#D69C4A]/10 rounded-xl p-6 border border-[#8A9A5B]/20">
+                    <h4 className="font-serif text-xl text-[#1F2124] mb-4">How to Use</h4>
+                    <p className="text-gray-700 mb-4 font-medium">Simply place the bar inside:</p>
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      {['Wardrobes', 'Closets', 'Drawers', 'Luggage', 'Linen cabinets', 'Gift boxes or trousseaus'].map((place) => (
+                        <div key={place} className="flex items-center gap-2 text-gray-700">
+                          <span className="text-[#8A9A5B] text-lg">✓</span>
+                          <span>{place}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="space-y-2 pt-4 border-t border-[#8A9A5B]/20">
+                      <p className="text-gray-700">
+                        <span className="font-semibold text-[#1F2124]">For a subtler effect:</span> Keep the bar in its breathable pouch.
+                      </p>
+                      <p className="text-gray-700">
+                        <span className="font-semibold text-[#1F2124]">For stronger diffusion:</span> Place it uncovered.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

@@ -51,40 +51,40 @@ export default function CheckoutPage({
 
   const handelPaymentMarchent = async () => {
 
-   const textdate = new Date();
-   const dd = String(textdate.getDate()).padStart(2, '0');
-   const mm = String(textdate.getMonth() + 1).padStart(2, '0'); //January is 0!
-   const yyyy = textdate.getFullYear();
-   const hh = String(textdate.getHours()).padStart(2, '0');
-   const min = String(textdate.getMinutes()).padStart(2, '0');
-   const ss = String(textdate.getSeconds()).padStart(2, '0');
+    const textdate = new Date();
+    const dd = String(textdate.getDate()).padStart(2, '0');
+    const mm = String(textdate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = textdate.getFullYear();
+    const hh = String(textdate.getHours()).padStart(2, '0');
+    const min = String(textdate.getMinutes()).padStart(2, '0');
+    const ss = String(textdate.getSeconds()).padStart(2, '0');
 
-   const formattedDate = yyyy + mm + dd + hh + min + ss;
-   console.log("formattedDate",formattedDate);
+    const formattedDate = yyyy + mm + dd + hh + min + ss;
+    console.log("formattedDate", formattedDate);
 
-   const rendome12digit = Math.floor(100000000000 + Math.random() * 900000000000);
-   console.log("rendome12digit",rendome12digit.toString());
+    const rendome12digit = Math.floor(100000000000 + Math.random() * 900000000000);
+    console.log("rendome12digit", rendome12digit.toString());
 
-  const requestPayload = {
-   merchantId: "100000000007164",
-    aggregatorID :"A100000000007164",								
-    merchantTxnNo: rendome12digit.toString(),								
-    amount: total.toFixed(2).toString(),								
-    currencyCode: "356",								
-    payType: "0",								
-    customerEmailID: formData.customerEmail,								
-    transactionType: "SALE",								
-    returnURL: "https://pgpayuat.icicibank.com/tsp/pg/api/merchant",								
-    txnDate: formattedDate,								
-    customerMobileNo: formData.customerPhone,								
-    customerName: formData.customerName,								
-    addlParam1: "000",								
-    addlParam2: "111",									
-    						
-};
+    const requestPayload = {
+      merchantId: "100000000007164",
+      aggregatorID: "A100000000007164",
+      merchantTxnNo: rendome12digit.toString(),
+      amount: total.toFixed(2).toString(),
+      currencyCode: "356",
+      payType: "0",
+      customerEmailID: formData.customerEmail,
+      transactionType: "SALE",
+      returnURL: "https://pgpayuat.icicibank.com/tsp/pg/api/merchant",
+      txnDate: formattedDate,
+      customerMobileNo: formData.customerPhone,
+      customerName: formData.customerName,
+      addlParam1: "000",
+      addlParam2: "111",
+
+    };
 
 
-  
+
     const res = await fetch('http://localhost:3000/api/generate-hash', {
       method: 'POST',
       headers: {
@@ -95,14 +95,14 @@ export default function CheckoutPage({
 
     const data = await res.json();
     console.log("Hash Response from backend:", data);
-  
 
-const setrequestPayload = {
-  ...requestPayload,
-  secureHash: data.hash,
-};
 
-   console.log("requestPayload",setrequestPayload);
+    const setrequestPayload = {
+      ...requestPayload,
+      secureHash: data.hash,
+    };
+
+    console.log("requestPayload", setrequestPayload);
 
     try {
       const response = await fetch('http://localhost:3000/api/initiate-sale', {
@@ -384,11 +384,11 @@ const setrequestPayload = {
 
               <div className="bg-[#F4EDE6] rounded-xl p-8 border border-gray-200">
                 <h2 className="font-serif text-2xl text-[#1F2124] mb-4">Payment Method</h2>
-                 <div
-                    onClick={() => setOnlinePayment(false)}
-                    className={`flex items-center gap-3 p-4 mt-2 bg-white rounded-lg border-2 cursor-pointer 
+                <div
+                  onClick={() => setOnlinePayment(false)}
+                  className={`flex items-center gap-3 p-4 mt-2 bg-white rounded-lg border-2 cursor-pointer 
                       ${onlinePayment ? 'border-[#1F2124]' : 'border-[#D69C4A]'}`}
-                  >
+                >
 
                   <CreditCard className="text-[#D69C4A]" size={24} />
                   <div>
@@ -396,11 +396,11 @@ const setrequestPayload = {
                     <p className="text-sm text-gray-600">Pay when you receive your order</p>
                   </div>
                 </div>
-                 <div
-                    onClick={() => setOnlinePayment(true)}
-                    className={`flex items-center gap-3 p-4 mt-2 bg-white rounded-lg border-2 cursor-pointer 
+                <div
+                  onClick={() => setOnlinePayment(true)}
+                  className={`flex items-center gap-3 p-4 mt-2 bg-white rounded-lg border-2 cursor-pointer 
                       ${onlinePayment ? 'border-[#D69C4A]' : 'border-[#1F2124]'}`}
-                  >
+                >
 
                   <CreditCard className="text-[#D69C4A]" size={24} />
                   <div>
@@ -461,27 +461,27 @@ const setrequestPayload = {
                   <span className="font-serif text-lg text-[#1F2124]">Total</span>
                   <span className="font-serif text-2xl text-[#D69C4A]">Rs {total.toFixed(2)}</span>
                 </div>
-            {
+                {
                   onlinePayment ? (
-                  <button
-                  type="submit"
-                  disabled={isProcessing}
-                  className="w-full py-4 bg-[#D69C4A] text-white rounded-lg hover:bg-[#c28a3a] transition-colors font-medium uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isProcessing ? 'Processing...' : 'online payment'}
-                </button>
+                    <button
+                      type="submit"
+                      disabled={isProcessing}
+                      className="w-full py-4 bg-[#D69C4A] text-white rounded-lg hover:bg-[#c28a3a] transition-colors font-medium uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? 'Processing...' : 'online payment'}
+                    </button>
                   ) : (
-                <button
-                type="submit"
-                // onClick={handelPaymentMarchent}
-                disabled={isProcessing}
-                className="w-full mt-4 py-4 bg-[#D69C4A] text-white rounded-lg border border-[#D69C4A] hover:bg-gray-100 transition-colors font-medium uppercase tracking-wider"
-              >
-                {isProcessing ? 'Processing...' : 'Place Order'}
-              </button>
+                    <button
+                      type="submit"
+                      // onClick={handelPaymentMarchent}
+                      disabled={isProcessing}
+                      className="w-full mt-4 py-4 bg-[#D69C4A] text-white rounded-lg border border-[#D69C4A] hover:bg-gray-100 transition-colors font-medium uppercase tracking-wider"
+                    >
+                      {isProcessing ? 'Processing...' : 'Place Order'}
+                    </button>
                   )
-            }
-               
+                }
+
 
                 <div className="mt-6 pt-6 border-t border-gray-300 space-y-2 text-xs text-gray-600">
                   <div className="flex items-center gap-2">

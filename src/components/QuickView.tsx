@@ -2,6 +2,7 @@ import { X, ShoppingBag, Star, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import type { Product } from '../lib/supabase';
 import { addToWishlist, removeFromWishlist, isInWishlist } from '../lib/wishlist';
+import { getScentNoteLabel } from '../utils/scentNoteLabels';
 
 type QuickViewProps = {
   product: Product | null;
@@ -154,17 +155,17 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
                 <div className="space-y-1.5 text-sm">
                   {product.scent_notes.top.length > 0 && (
                     <div>
-                      <span className="font-medium">Top:</span> {product.scent_notes.top.join(', ')}
+                      <span className="font-medium">{getScentNoteLabel('top')}:</span> {product.scent_notes.top.join(', ')}
                     </div>
                   )}
                   {product.scent_notes.heart.length > 0 && (
                     <div>
-                      <span className="font-medium">Heart:</span> {product.scent_notes.heart.join(', ')}
+                      <span className="font-medium">{getScentNoteLabel('heart')}:</span> {product.scent_notes.heart.join(', ')}
                     </div>
                   )}
                   {product.scent_notes.base.length > 0 && (
                     <div>
-                      <span className="font-medium">Base:</span> {product.scent_notes.base.join(', ')}
+                      <span className="font-medium">{getScentNoteLabel('base')}:</span> {product.scent_notes.base.join(', ')}
                     </div>
                   )}
                 </div>
