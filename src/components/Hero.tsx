@@ -3,15 +3,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    image: 'https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: '/images/luxury.jpg',
     alt: 'Luxury beeswax candles'
   },
   {
-    image: 'https://images.pexels.com/photos/3737582/pexels-photo-3737582.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: '/images/essence.jpg',
     alt: 'Handcrafted candles in elegant setting'
   },
   {
-    image: 'https://images.pexels.com/photos/4040590/pexels-photo-4040590.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: '/images/making-candles.webp',
     alt: 'Natural beeswax candle collection'
   }
 ];

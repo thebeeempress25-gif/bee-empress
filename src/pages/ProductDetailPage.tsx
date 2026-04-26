@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
-import { supabase, type Product } from '../lib/supabase';
-import { ShoppingBag, Heart, Share2, ChevronRight, Star, Check } from 'lucide-react';
-import { addToWishlist, removeFromWishlist, isInWishlist } from '../lib/wishlist';
+import { getProductBySlug, getProducts, type Product } from '../lib/data';
+import { ShoppingBag, Heart, Share2, ChevronRight, Star } from 'lucide-react';
+import { addToWishlist as localAddToWishlist, removeFromWishlist as localRemoveFromWishlist, isInWishlist as localIsInWishlist } from '../lib/wishlist';
 import { getScentNoteLabel } from '../utils/scentNoteLabels';
+import { getProductPricing } from '../utils/pricing';
 
 type ProductDetailPageProps = {
   slug: string;
@@ -22,42 +23,30 @@ export default function ProductDetailPage({
   const [inWishlist, setInWishlist] = useState(false);
 
   useEffect(() => {
-    fetchProduct();
+    async function fetchData() {
+      setLoading(true);
+      const productData = getProductBySlug(slug);
+      setProduct(productData || null);
+      
+      if (productData) {
+        const status = await localIsInWishlist(productData.id);
+        setInWishlist(status);
+      }
+      setLoading(false);
+    }
+    fetchData();
   }, [slug]);
-
-  const checkWishlistStatus = useCallback(async () => {
-    if (product) {
-      const status = await isInWishlist(product.id);
-      setInWishlist(status);
-    }
-  }, [product]);
-
-  useEffect(() => {
-    if (product) {
-      checkWishlistStatus();
-    }
-  }, [product, checkWishlistStatus]);
 
   async function toggleWishlist() {
     if (!product) return;
 
     if (inWishlist) {
-      await removeFromWishlist(product.id);
+      await localRemoveFromWishlist(product.id);
       setInWishlist(false);
     } else {
-      await addToWishlist(product.id);
+      await localAddToWishlist(product.id);
       setInWishlist(true);
     }
-  }
-
-  async function fetchProduct() {
-    const { data } = await supabase
-      .from('products')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
-    setProduct(data);
-    setLoading(false);
   }
 
   if (loading) {
@@ -68,9 +57,7 @@ export default function ProductDetailPage({
     return <div className="min-h-screen flex items-center justify-center">Product not found</div>;
   }
 
-  const displayPrice = product.price;
-  const originalPrice = product.price + 500;
-  const savings = 500;
+  const { displayPrice, originalPrice, savings } = getProductPricing(product);
 
   return (
     <div className="min-h-screen bg-white">

@@ -97,7 +97,7 @@ export default function PrivacyPage() {
                 <strong>Email:</strong> <a href="mailto:info@thebeeempress.com" className="text-[#D69C4A] hover:underline">info@thebeeempress.com</a>
               </p>
               <p className="text-gray-700">
-                <strong>Phone:</strong> <a href="tel:+918810314219" className="text-[#D69C4A] hover:underline">+91 88103 14219</a>
+                <strong>Phone:</strong> <a href="tel:+918810314219" className="text-[#D69C4A] hover:underline">+91 88103 14210</a>
               </p>
             </div>
           </section>

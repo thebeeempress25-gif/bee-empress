@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { supabase, type Product, type Collection } from '../lib/supabase';
+import { getCollectionBySlug, getProducts, type Product, type Collection } from '../lib/data';
 import ProductCard from '../components/ProductCard';
 
 type CollectionPageProps = {
@@ -20,38 +20,22 @@ export default function CollectionPage({
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchCollectionData = useCallback(async () => {
+  useEffect(() => {
     setLoading(true);
-    const { data: collectionData } = await supabase
-      .from('collections')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
+    const collectionData = getCollectionBySlug(slug);
 
     if (collectionData) {
       setCollection(collectionData);
+      const productsData = getProducts().filter(p => p.collection_id === collectionData.id && p.is_active);
+      setProducts(productsData);
 
-      const query = supabase
-        .from('products')
-        .select('*')
-        .eq('collection_id', collectionData.id)
-        .eq('is_active', true);
-
-      const { data: productsData } = await query;
-      if (productsData) {
-        setProducts(productsData);
-        if (!selectedSegment && productsData.length > 0) {
-          const firstSegment = productsData[0].scent_notes?.base?.[0] || 'all';
-          setSelectedSegment(firstSegment);
-        }
+      if (!selectedSegment && productsData.length > 0) {
+        const firstSegment = productsData[0].scent_notes?.base?.[0] || 'all';
+        setSelectedSegment(firstSegment);
       }
     }
     setLoading(false);
   }, [slug, selectedSegment]);
-
-  useEffect(() => {
-    fetchCollectionData();
-  }, [slug, fetchCollectionData]);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;

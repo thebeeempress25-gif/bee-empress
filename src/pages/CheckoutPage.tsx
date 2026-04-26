@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowLeft, CreditCard } from 'lucide-react';
 import type { CartItemWithProduct } from '../lib/cart';
+import { getProductPricing } from '../utils/pricing';
 
 
 type CheckoutPageProps = {
@@ -132,51 +133,12 @@ export default function CheckoutPage({
       return;
     }
 
-    try {
-      const sessionId = localStorage.getItem('cart_session_id') || '';
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-
-      const response = await fetch(`${supabaseUrl}/functions/v1/checkout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({
-          sessionId,
-          customerInfo: {
-            name: formData.customerName,
-            email: formData.customerEmail,
-            phone: formData.customerPhone,
-            notes: formData.notes,
-          },
-          shippingAddress: {
-            fullName: formData.fullName,
-            addressLine1: formData.addressLine1,
-            addressLine2: formData.addressLine2,
-            city: formData.city,
-            state: formData.state,
-            postalCode: formData.postalCode,
-            country: formData.country,
-            phone: formData.shippingPhone,
-          },
-          paymentMethod: 'cash_on_delivery',
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        onCheckoutComplete(data.order.orderNumber);
-      } else {
-        alert(data.error || 'Checkout failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      alert('An error occurred during checkout. Please try again.');
-    } finally {
+    // Mock successful checkout
+    setTimeout(() => {
+      const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      onCheckoutComplete(orderNumber);
       setIsProcessing(false);
-    }
+    }, 1500);
   };
 
   if (items.length === 0) {
@@ -427,9 +389,9 @@ export default function CheckoutPage({
                         <p className="text-sm font-medium text-[#1F2124]">{item.product.name}</p>
                         <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
                         <div className="flex items-center gap-1 mt-1">
-                          <span className="text-xs text-gray-400 line-through">Rs {item.product.price + 500}</span>
+                          <span className="text-xs text-gray-400 line-through">Rs {getProductPricing(item.product).originalPrice}</span>
                           <span className="text-xs text-red-600 font-medium">
-                            Save Rs 500
+                            Save Rs {getProductPricing(item.product).savings}
                           </span>
                         </div>
                       </div>

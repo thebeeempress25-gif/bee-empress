@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { getProductById } from './data';
 
 export function getSessionId(): string {
   let sessionId = localStorage.getItem('cart_session_id');
@@ -20,105 +20,94 @@ export type CartItemWithProduct = {
     offer_price?: number;
     images: string[];
     slug: string;
+    type: string;
   };
 };
 
-export async function loadCart(): Promise<CartItemWithProduct[]> {
-  const sessionId = getSessionId();
+type LocalCartItem = {
+  id: string;
+  product_id: string;
+  quantity: number;
+  gift_wrap: boolean;
+};
 
-  const { data, error } = await supabase
-    .from('cart_items')
-    .select(`
-      id,
-      product_id,
-      quantity,
-      gift_wrap,
-      products (
-        name,
-        price,
-        offer_price,
-        images,
-        slug
-      )
-    `)
-    .eq('session_id', sessionId);
-
-  if (error) {
-    console.error('Error loading cart:', error);
+function getLocalCart(): LocalCartItem[] {
+  const cartJson = localStorage.getItem(`cart_${getSessionId()}`);
+  if (!cartJson) return [];
+  try {
+    return JSON.parse(cartJson);
+  } catch {
     return [];
   }
+}
 
-  return (data || []).map(item => {
-    // Handle products relation - it can be an object or array depending on Supabase version
-    const product = Array.isArray(item.products) ? item.products[0] : item.products;
+function saveLocalCart(cart: LocalCartItem[]) {
+  localStorage.setItem(`cart_${getSessionId()}`, JSON.stringify(cart));
+}
 
-    return {
-      id: item.id,
-      product_id: item.product_id,
-      quantity: item.quantity,
-      gift_wrap: item.gift_wrap,
-      product: {
-        name: product?.name || '',
-        price: product?.price || 0,
-        offer_price: product?.offer_price,
-        images: product?.images || [],
-        slug: product?.slug || '',
-      }
-    };
-  });
+export async function loadCart(): Promise<CartItemWithProduct[]> {
+  const localCart = getLocalCart();
+  const items: CartItemWithProduct[] = [];
+
+  for (const item of localCart) {
+    const product = getProductById(item.product_id);
+    if (product) {
+      items.push({
+        id: item.id,
+        product_id: item.product_id,
+        quantity: item.quantity,
+        gift_wrap: item.gift_wrap,
+        product: {
+          name: product.name,
+          price: product.price,
+          offer_price: product.offer_price,
+          images: product.images,
+          slug: product.slug,
+          type: product.type,
+        }
+      });
+    }
+  }
+
+  return items;
 }
 
 export async function addToCart(productId: string, quantity: number = 1, giftWrap: boolean = false): Promise<void> {
-  const sessionId = getSessionId();
-
-  const { data: existing } = await supabase
-    .from('cart_items')
-    .select('id, quantity')
-    .eq('session_id', sessionId)
-    .eq('product_id', productId)
-    .maybeSingle();
+  const cart = getLocalCart();
+  const existing = cart.find(item => item.product_id === productId);
 
   if (existing) {
-    await supabase
-      .from('cart_items')
-      .update({ quantity: existing.quantity + quantity })
-      .eq('id', existing.id);
+    existing.quantity += quantity;
   } else {
-    await supabase
-      .from('cart_items')
-      .insert({
-        session_id: sessionId,
-        product_id: productId,
-        quantity,
-        gift_wrap: giftWrap,
-      });
+    cart.push({
+      id: `cart_item_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      product_id: productId,
+      quantity,
+      gift_wrap: giftWrap,
+    });
   }
+
+  saveLocalCart(cart);
 }
 
 export async function updateCartItem(cartItemId: string, quantity: number, giftWrap?: boolean): Promise<void> {
-  const updates: any = { quantity };
-  if (giftWrap !== undefined) {
-    updates.gift_wrap = giftWrap;
+  const cart = getLocalCart();
+  const item = cart.find(i => i.id === cartItemId);
+  if (item) {
+    item.quantity = quantity;
+    if (giftWrap !== undefined) {
+      item.gift_wrap = giftWrap;
+    }
+    saveLocalCart(cart);
   }
-
-  await supabase
-    .from('cart_items')
-    .update(updates)
-    .eq('id', cartItemId);
 }
 
 export async function removeFromCart(cartItemId: string): Promise<void> {
-  await supabase
-    .from('cart_items')
-    .delete()
-    .eq('id', cartItemId);
+  let cart = getLocalCart();
+  cart = cart.filter(item => item.id !== cartItemId);
+  saveLocalCart(cart);
 }
 
 export async function clearCart(): Promise<void> {
-  const sessionId = getSessionId();
-
-  await supabase
-    .from('cart_items')
-    .delete()
-    .eq('session_id', sessionId);
+  saveLocalCart([]);
 }

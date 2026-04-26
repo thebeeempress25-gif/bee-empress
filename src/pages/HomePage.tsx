@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type Product, type Collection } from '../lib/supabase';
+import { getProducts, getCollections, type Product, type Collection } from '../lib/data';
 import ProductCard from '../components/ProductCard';
 import { getCollectionTags, getCollectionTagline } from '../utils/collectionAttributes';
 
@@ -15,19 +15,13 @@ export default function HomePage({ onNavigate, onQuickView, onAddToCart }: HomeP
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const productsData = getProducts().filter(p => p.is_featured && p.is_active).slice(0, 4);
+    const collectionsData = getCollections().sort((a, b) => a.display_order - b.display_order);
 
-  async function fetchData() {
-    const [{ data: productsData }, { data: collectionsData }] = await Promise.all([
-      supabase.from('products').select('*').eq('is_featured', true).eq('is_active', true).limit(4),
-      supabase.from('collections').select('*').order('display_order'),
-    ]);
-
-    if (productsData) setFeaturedProducts(productsData);
-    if (collectionsData) setCollections(collectionsData);
+    setFeaturedProducts(productsData);
+    setCollections(collectionsData);
     setLoading(false);
-  }
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,7 +40,7 @@ export default function HomePage({ onNavigate, onQuickView, onAddToCart }: HomeP
             />
             {/* Fallback image if video doesn't load */}
             <img
-              src="https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              src="/images/luxury.jpg"
               alt="Luxury beeswax candles"
               className="w-full h-full object-cover"
             />

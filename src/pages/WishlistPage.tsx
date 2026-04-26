@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Heart, ShoppingBag, X } from 'lucide-react';
-import { supabase, type Product } from '../lib/supabase';
+import { getProducts, type Product } from '../lib/data';
 import { getWishlist, removeFromWishlist } from '../lib/wishlist';
 
 type WishlistPageProps = {
@@ -14,26 +14,23 @@ export default function WishlistPage({ onNavigate, onAddToCart, onWishlistChange
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function fetchWishlistProducts() {
+      const wishlistIds = await getWishlist();
+
+      if (wishlistIds.length === 0) {
+        setProducts([]);
+        setLoading(false);
+        return;
+      }
+
+      const allProducts = getProducts();
+      const wishlistProducts = allProducts.filter(p => wishlistIds.includes(p.id));
+
+      setProducts(wishlistProducts);
+      setLoading(false);
+    }
     fetchWishlistProducts();
   }, []);
-
-  async function fetchWishlistProducts() {
-    const wishlistIds = await getWishlist();
-
-    if (wishlistIds.length === 0) {
-      setProducts([]);
-      setLoading(false);
-      return;
-    }
-
-    const { data } = await supabase
-      .from('products')
-      .select('*')
-      .in('id', wishlistIds);
-
-    setProducts(data || []);
-    setLoading(false);
-  }
 
   async function handleRemove(productId: string) {
     await removeFromWishlist(productId);

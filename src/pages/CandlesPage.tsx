@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type Product } from '../lib/supabase';
+import { getCollections, getProducts, type Product } from '../lib/data';
 import ProductCard from '../components/ProductCard';
 
 type CandlesPageProps = {
@@ -22,28 +22,18 @@ export default function CandlesPage({ onQuickView, onAddToCart, onNavigate, init
   ];
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    const [collectionsRes, productsRes] = await Promise.all([
-      supabase.from('collections').select('id, slug, name, description').in('slug', ['luxury', 'elegance', 'essence']),
-      supabase.from('products').select('*').eq('type', 'candle').eq('is_active', true),
-    ]);
+    const collectionsList = getCollections().filter(c => ['luxury', 'elegance', 'essence'].includes(c.slug));
+    const productsList = getProducts().filter(p => p.type === 'candle' && p.is_active);
 
     const collectionsMap: Record<string, any> = {};
-    if (collectionsRes.data) {
-      collectionsRes.data.forEach((c) => {
-        collectionsMap[c.slug] = c;
-      });
-    }
-    setCollections(collectionsMap);
+    collectionsList.forEach((c) => {
+      collectionsMap[c.slug] = c;
+    });
 
-    if (productsRes.data) {
-      setProducts(productsRes.data);
-    }
+    setCollections(collectionsMap);
+    setProducts(productsList);
     setLoading(false);
-  }
+  }, []);
 
   const selectedCollection = collections[selectedSubcategory];
   const filteredProducts = products.filter((p) => p.collection_id === selectedCollection?.id);
@@ -55,7 +45,7 @@ export default function CandlesPage({ onQuickView, onAddToCart, onNavigate, init
   return (
     <div className="min-h-screen bg-white">
       {/* Main Hero Section - BEESWAX SCENTED CANDLES */}
-      <section className="relative py-24 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
+      <section className="relative py-16 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => onNavigate('shop')}
@@ -64,25 +54,26 @@ export default function CandlesPage({ onQuickView, onAddToCart, onNavigate, init
             ← Back to Shop
           </button>
 
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-6">
-              BEESWAX SCENTED CANDLES
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-3xl md:text-4xl text-[#1F2124] mb-4 uppercase">
+              Beeswax Scented Candles
             </h1>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 font-serif">
-              Our beeswax candles infuse your space with sophisticated scent compositions, each crafted to evoke serenity, grandeur, and timeless allure. With a natural golden glow & exquisite fragrance diffusion, these candles transform any room into a haven of opulence.
+            <div className="w-24 h-1 bg-[#D69C4A] mx-auto mb-6"></div>
+            <p className="text-lg text-gray-700 leading-relaxed mb-8 font-serif">
+              Our beeswax candles infuse your space with sophisticated scent compositions, each crafted to evoke serenity, grandeur, and timeless allure. With a natural golden glow & exquisite fragrance diffusion, these candles transform any room into a haven of opulence and well-being.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-600">
+            <div className="flex flex-wrap justify-center gap-8 text-gray-600">
               <div className="flex items-center gap-2">
-                <span className="text-[#D69C4A]">•</span>
-                <span>Slow burning</span>
+                <span className="text-[#D69C4A] font-bold">•</span>
+                <span className="text-sm uppercase tracking-widest">Slow burning</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#D69C4A]">•</span>
-                <span>Clean, toxin-free</span>
+                <span className="text-[#D69C4A] font-bold">•</span>
+                <span className="text-sm uppercase tracking-widest">Clean, toxin-free</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#D69C4A]">•</span>
-                <span>Fragrances curated for the refined palate</span>
+                <span className="text-[#D69C4A] font-bold">•</span>
+                <span className="text-sm uppercase tracking-widest">Artisan Curated</span>
               </div>
             </div>
           </div>

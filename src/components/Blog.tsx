@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type BlogPost } from '../lib/supabase';
+import { getBlogPosts, type BlogPost } from '../lib/data';
 import { Calendar, User } from 'lucide-react';
 
 export default function Blog() {
@@ -7,19 +7,8 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPosts() {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('published_at', { ascending: false });
-
-      if (!error && data) {
-        setPosts(data);
-      }
-      setLoading(false);
-    }
-
-    fetchPosts();
+    setPosts(getBlogPosts());
+    setLoading(false);
   }, []);
 
   if (loading) {

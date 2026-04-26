@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Instagram, Facebook, Twitter } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 
 type FooterProps = {
   onNavigate: (page: string) => void;
@@ -14,19 +13,12 @@ export default function Footer({ onNavigate }: FooterProps) {
     e.preventDefault();
     setStatus('loading');
 
-    try {
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert([{ email }]);
-
-      if (error) throw error;
+    // Simulate API call
+    setTimeout(() => {
       setStatus('success');
       setEmail('');
       setTimeout(() => setStatus('idle'), 3000);
-    } catch {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
+    }, 1000);
   };
 
   return (

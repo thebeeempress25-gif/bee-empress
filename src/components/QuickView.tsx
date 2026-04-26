@@ -1,8 +1,9 @@
 import { X, ShoppingBag, Star, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import type { Product } from '../lib/supabase';
-import { addToWishlist, removeFromWishlist, isInWishlist } from '../lib/wishlist';
+import type { Product } from '../lib/data';
+import { addToWishlist as localAddToWishlist, removeFromWishlist as localRemoveFromWishlist, isInWishlist as localIsInWishlist } from '../lib/wishlist';
 import { getScentNoteLabel } from '../utils/scentNoteLabels';
+import { getProductPricing } from '../utils/pricing';
 
 type QuickViewProps = {
   product: Product | null;
@@ -25,7 +26,7 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
 
   async function checkWishlistStatus() {
     if (product) {
-      const status = await isInWishlist(product.id);
+      const status = await localIsInWishlist(product.id);
       setInWishlist(status);
     }
   }
@@ -34,10 +35,10 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
     if (!product) return;
 
     if (inWishlist) {
-      await removeFromWishlist(product.id);
+      await localRemoveFromWishlist(product.id);
       setInWishlist(false);
     } else {
-      await addToWishlist(product.id);
+      await localAddToWishlist(product.id);
       setInWishlist(true);
     }
   }
@@ -50,9 +51,7 @@ export default function QuickView({ product, isOpen, onClose, onAddToCart, onNav
     setQuantity(1);
   };
 
-  const displayPrice = product.price;
-  const originalPrice = product.price + 500;
-  const savings = 500;
+  const { displayPrice, originalPrice, savings } = getProductPricing(product);
 
   return (
     <div
