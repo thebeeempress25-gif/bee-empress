@@ -133,7 +133,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
               <img
-                src="https://images.pexels.com/photos/3568459/pexels-photo-3568459.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/luxury.jpg"
                 alt="Beeswax Candles"
                 className="w-full h-64 object-cover"
               />
@@ -146,7 +146,7 @@ export default function AboutPage() {
             </div>
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
               <img
-                src="https://images.pexels.com/photos/6621392/pexels-photo-6621392.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/ancient_essence_musk.jpg"
                 alt="Solid Perfumes"
                 className="w-full h-64 object-cover"
               />
@@ -159,7 +159,7 @@ export default function AboutPage() {
             </div>
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
               <img
-                src="https://images.pexels.com/photos/4113778/pexels-photo-4113778.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/classic_fresh_1.jpg"
                 alt="Fragrance Bars"
                 className="w-full h-64 object-cover"
               />

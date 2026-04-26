@@ -89,8 +89,8 @@ export default function SustainabilityPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <img
-                src="https://images.pexels.com/photos/2478355/pexels-photo-2478355.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Bees on honeycomb"
+                src="/images/beewax.jpeg"
+                alt="Beeswax on honeycomb"
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
@@ -102,7 +102,7 @@ export default function SustainabilityPage() {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <img
-                src="https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/making-candles.webp"
                 alt="Candle making process"
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -115,7 +115,7 @@ export default function SustainabilityPage() {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <img
-                src="https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/package.jpg"
                 alt="Sustainable packaging"
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -128,7 +128,7 @@ export default function SustainabilityPage() {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg group">
               <img
-                src="https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/essence.jpg"
                 alt="Wildflower meadow"
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
               />

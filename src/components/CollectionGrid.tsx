@@ -1,4 +1,4 @@
-import type { Collection } from '../lib/supabase';
+import type { Collection } from '../lib/data';
 
 type CollectionGridProps = {
   collections: Collection[];

@@ -3,32 +3,32 @@ export default function WhyBeeswax() {
     {
       title: 'Naturally Purifies the Air',
       description: 'When lit, beeswax gently releases negative ions that help neutralize airborne impurities and Odors, creating a cleaner, calmer space.',
-      image: 'https://images.pexels.com/photos/3951628/pexels-photo-3951628.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/luxury.jpg',
     },
     {
       title: 'Unparalleled Burn Time',
       description: 'With its naturally high melting point, beeswax burns slower and longer, offering enduring beauty and exceptional value.',
-      image: 'https://images.pexels.com/photos/4040610/pexels-photo-4040610.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/essence.jpg',
     },
     {
       title: 'Immaculate, Clean Flame',
       description: 'Beeswax candles burn with remarkable purity, producing virtually no smoke or soot.',
-      image: 'https://images.pexels.com/photos/6945095/pexels-photo-6945095.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/smell.jpg',
     },
     {
       title: 'Pure, Natural & Non-Toxic',
       description: 'Free from petroleum, additives, and synthetic chemicals — only nature, as intended.',
-      image: 'https://images.pexels.com/photos/3568459/pexels-photo-3568459.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/beewaxxx.jpg',
     },
     {
       title: 'A Subtle Signature Aroma',
       description: 'A delicate, honeyed scent lingers naturally, even without added fragrance.',
-      image: 'https://images.pexels.com/photos/4040596/pexels-photo-4040596.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/making-candles.webp',
     },
     {
       title: 'Sustainably Luxurious',
       description: 'Renewable, biodegradable, and supportive of beekeeping traditions that nurture our planet.',
-      image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/images/package.jpg',
     },
   ];
 

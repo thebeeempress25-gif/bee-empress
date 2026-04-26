@@ -1,5 +1,6 @@
 import { ArrowLeft, Trash2 } from 'lucide-react';
 import type { CartItemWithProduct } from '../lib/cart';
+import { getProductPricing } from '../utils/pricing';
 
 type CartPageProps = {
   items: CartItemWithProduct[];
@@ -81,9 +82,9 @@ export default function CartPage({
                       </p>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-sm font-medium text-[#D69C4A]">Rs {item.product.price}</span>
-                        <span className="text-xs text-gray-400 line-through">Rs {item.product.price + 500}</span>
+                        <span className="text-xs text-gray-400 line-through">Rs {getProductPricing(item.product).originalPrice}</span>
                         <span className="text-xs text-red-600 font-medium">
-                          Save Rs 500
+                          Save Rs {getProductPricing(item.product).savings}
                         </span>
                       </div>
 

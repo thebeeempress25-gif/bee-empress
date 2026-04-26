@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type Product } from '../lib/supabase';
+import { getProducts, type Product } from '../lib/data';
 import ProductCard from '../components/ProductCard';
 
 type ShopPageProps = {
@@ -16,24 +16,14 @@ export default function ShopPage({ onQuickView, onAddToCart, onNavigate }: ShopP
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProducts();
+    const data = getProducts().filter(p => p.is_active);
+    setProducts(data);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
     applyFiltersAndSort();
   }, [products, selectedPriceRange, sortBy]);
-
-  async function fetchProducts() {
-    const { data } = await supabase
-      .from('products')
-      .select('*')
-      .eq('is_active', true);
-
-    if (data) {
-      setProducts(data);
-    }
-    setLoading(false);
-  }
 
   function applyFiltersAndSort() {
     let filtered = [...products];

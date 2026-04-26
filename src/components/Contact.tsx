@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,20 +14,12 @@ export default function Contact() {
     e.preventDefault();
     setStatus('loading');
 
-    try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert([formData]);
-
-      if (error) throw error;
-
+    // Simulate API call
+    setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
-    }
+    }, 1000);
   };
 
   return (
@@ -152,7 +143,7 @@ export default function Contact() {
                       href="tel:+918810314219"
                       className="text-gray-600 hover:text-[#D69C4A] transition-colors"
                     >
-                      +91 88103 14219
+                      +91 88103 14210
                     </a>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type Product } from '../lib/supabase';
+import { getProducts, type Product } from '../lib/data';
 import ProductCard from '../components/ProductCard';
 
 type FragranceBarsPageProps = {
@@ -13,21 +13,10 @@ export default function FragranceBarsPage({ onQuickView, onAddToCart, onNavigate
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  async function fetchProducts() {
-    const { data } = await supabase
-      .from('products')
-      .select('*')
-      .eq('type', 'fragrance_bar')
-      .eq('is_active', true);
-
-    if (data) {
-      setProducts(data);
-    }
+    const data = getProducts().filter(p => p.type === 'fragrance_bar' && p.is_active);
+    setProducts(data);
     setLoading(false);
-  }
+  }, []);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -35,20 +24,37 @@ export default function FragranceBarsPage({ onQuickView, onAddToCart, onNavigate
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="relative py-24 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
+      <section className="relative py-16 bg-gradient-to-r from-[#FFF9F2] to-[#F4EDE6]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => onNavigate('shop')}
-            className="text-[#D69C4A] hover:text-[#1F2124] transition-colors text-sm uppercase tracking-wider mb-4"
+            className="text-[#D69C4A] hover:text-[#1F2124] transition-colors text-sm uppercase tracking-wider mb-8"
           >
             ← Back to Shop
           </button>
-          <h1 className="font-serif text-5xl md:text-6xl text-[#1F2124] mb-4">
-            Fragrance Bars
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Subtle, lasting scent for your spaces and belongings. Our handcrafted fragrance bars transform any environment with natural, sustainable fragrance.
-          </p>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-3xl md:text-4xl text-[#1F2124] mb-4 uppercase">
+              Fragrance Bars
+            </h1>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 font-serif">
+              Subtle, lasting scent for your spaces and belongings. Our handcrafted fragrance bars transform any environment with natural, sustainable fragrance. Perfectly designed for wardrobes, drawers, and small personal corners, they offer a flameless way to experience pure olfactory luxury.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-gray-600">
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Naturally scents spaces</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Long-lasting effect</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#D69C4A]">•</span>
+                <span>Sustainable beeswax base</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

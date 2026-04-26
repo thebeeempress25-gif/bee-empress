@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Eye, ShoppingBag } from 'lucide-react';
-import type { Product } from '../lib/supabase';
-import { supabase } from '../lib/supabase';
+import type { Product } from '../lib/data';
+import { getCollectionById } from '../lib/data';
 import { getCollectionTags } from '../utils/collectionAttributes';
+import { getProductPricing } from '../utils/pricing';
 
 type ProductCardProps = {
   product: Product;
@@ -13,23 +14,8 @@ type ProductCardProps = {
 export default function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
-  const [collectionSlug, setCollectionSlug] = useState<string>('');
-
-  useEffect(() => {
-    async function fetchCollectionSlug() {
-      const { data } = await supabase
-        .from('collections')
-        .select('slug')
-        .eq('id', product.collection_id)
-        .single();
-
-      if (data) {
-        setCollectionSlug(data.slug);
-      }
-    }
-
-    fetchCollectionSlug();
-  }, [product.collection_id]);
+  const collection = getCollectionById(product.collection_id);
+  const collectionSlug = collection?.slug || '';
 
   const collectionTags = getCollectionTags(collectionSlug);
   const displayTags = collectionTags.length > 0 ? collectionTags : product.scent_notes.top?.slice(0, 3) || [];
@@ -119,7 +105,7 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-2xl font-serif text-[#D69C4A]">Rs {product.price}</span>
-            <span className="text-sm text-gray-400 line-through">Rs {product.price + 500}</span>
+            <span className="text-sm text-gray-400 line-through">Rs {getProductPricing(product).originalPrice}</span>
           </div>
           <button
             onClick={() => onAddToCart(product.id)}

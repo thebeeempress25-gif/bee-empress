@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { supabase, type Product } from './lib/supabase';
-import { getSessionId, type CartItemWithProduct } from './lib/cart';
+import { getSessionId, type CartItemWithProduct, loadCart, addToCart as localAddToCart, updateCartItem, removeFromCart as localRemoveFromCart } from './lib/cart';
+import { type Product } from './lib/data';
 import { getWishlist } from './lib/wishlist';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -55,80 +55,28 @@ function App() {
   }
 
   async function fetchCart() {
-    const sessionId = getSessionId();
-    const { data } = await supabase
-      .from('cart_items')
-      .select(`
-        id,
-        product_id,
-        quantity,
-        gift_wrap,
-        products (name, price, images, slug)
-      `)
-      .eq('session_id', sessionId);
-
-    if (data) {
-      const formattedItems: CartItemWithProduct[] = data.map((item) => {
-        const productsRaw = (Array.isArray(item.products) ? item.products[0] : item.products) as Record<string, unknown>;
-        return {
-          id: item.id,
-          product_id: item.product_id,
-          quantity: item.quantity as number,
-          gift_wrap: item.gift_wrap as boolean,
-          product: {
-            name: (productsRaw?.name as string) || '',
-            price: (productsRaw?.price as number) || 0,
-            images: (productsRaw?.images as string[]) || [],
-            slug: (productsRaw?.slug as string) || '',
-          },
-        };
-      });
-      setCartItems(formattedItems);
-    }
+    const items = await loadCart();
+    setCartItems(items);
   }
 
   async function addToCart(productId: string, quantity: number = 1) {
-    const sessionId = getSessionId();
-
-    const { data: existing } = await supabase
-      .from('cart_items')
-      .select('*')
-      .eq('session_id', sessionId)
-      .eq('product_id', productId)
-      .maybeSingle();
-
-    if (existing) {
-      await supabase
-        .from('cart_items')
-        .update({ quantity: existing.quantity + quantity })
-        .eq('id', existing.id);
-    } else {
-      await supabase
-        .from('cart_items')
-        .insert([{ session_id: sessionId, product_id: productId, quantity }]);
-    }
-
-    fetchCart();
+    await localAddToCart(productId, quantity);
+    await fetchCart();
     showToast('Added to cart!');
   }
 
   async function updateCartQuantity(itemId: string, quantity: number) {
     if (quantity <= 0) {
-      await removeFromCart(itemId);
-      return;
+      await localRemoveFromCart(itemId);
+    } else {
+      await updateCartItem(itemId, quantity);
     }
-
-    await supabase
-      .from('cart_items')
-      .update({ quantity })
-      .eq('id', itemId);
-
-    fetchCart();
+    await fetchCart();
   }
 
   async function removeFromCart(itemId: string) {
-    await supabase.from('cart_items').delete().eq('id', itemId);
-    fetchCart();
+    await localRemoveFromCart(itemId);
+    await fetchCart();
   }
 
   function showToast(message: string) {

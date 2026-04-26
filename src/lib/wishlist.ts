@@ -1,5 +1,3 @@
-import { supabase } from './supabase';
-
 function getSessionId(): string {
   let sessionId = localStorage.getItem('wishlist_session_id');
   if (!sessionId) {
@@ -9,40 +7,39 @@ function getSessionId(): string {
   return sessionId;
 }
 
-export async function getWishlist(): Promise<string[]> {
-  const sessionId = getSessionId();
-  const { data } = await supabase
-    .from('wishlist_items')
-    .select('product_id')
-    .eq('session_id', sessionId);
+function getLocalWishlist(): string[] {
+    const listJson = localStorage.getItem(`wishlist_${getSessionId()}`);
+    if (!listJson) return [];
+    try {
+        return JSON.parse(listJson);
+    } catch {
+        return [];
+    }
+}
 
-  return data?.map(item => item.product_id) || [];
+function saveLocalWishlist(list: string[]) {
+    localStorage.setItem(`wishlist_${getSessionId()}`, JSON.stringify(list));
+}
+
+export async function getWishlist(): Promise<string[]> {
+  return getLocalWishlist();
 }
 
 export async function addToWishlist(productId: string): Promise<void> {
-  const sessionId = getSessionId();
-  await supabase
-    .from('wishlist_items')
-    .insert({ session_id: sessionId, product_id: productId });
+    const list = getLocalWishlist();
+    if (!list.includes(productId)) {
+        list.push(productId);
+        saveLocalWishlist(list);
+    }
 }
 
 export async function removeFromWishlist(productId: string): Promise<void> {
-  const sessionId = getSessionId();
-  await supabase
-    .from('wishlist_items')
-    .delete()
-    .eq('session_id', sessionId)
-    .eq('product_id', productId);
+    let list = getLocalWishlist();
+    list = list.filter(id => id !== productId);
+    saveLocalWishlist(list);
 }
 
 export async function isInWishlist(productId: string): Promise<boolean> {
-  const sessionId = getSessionId();
-  const { data } = await supabase
-    .from('wishlist_items')
-    .select('id')
-    .eq('session_id', sessionId)
-    .eq('product_id', productId)
-    .maybeSingle();
-
-  return !!data;
+    const list = getLocalWishlist();
+    return list.includes(productId);
 }
